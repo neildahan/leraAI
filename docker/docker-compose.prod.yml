@@ -1,0 +1,53 @@
+version: '3.8'
+
+# Production docker-compose configuration
+# Usage: docker-compose -f docker/docker-compose.prod.yml up -d
+
+services:
+  api:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.api
+    container_name: lera-api-prod
+    restart: always
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+    env_file:
+      - ../.env
+    networks:
+      - lera-network
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+
+  web:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.web
+      args:
+        - VITE_API_URL=${VITE_API_URL:-http://localhost:3001}
+    container_name: lera-web-prod
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+    networks:
+      - lera-network
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+
+networks:
+  lera-network:
+    driver: bridge

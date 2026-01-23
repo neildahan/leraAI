@@ -1,0 +1,24 @@
+{
+  "name": "@lera-ai/ai-engine",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Claude AI integration for legal document synthesis",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "lint": "eslint src --ext .ts",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.14.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.3"
+  },
+  "peerDependencies": {
+    "@anthropic-ai/sdk": "^0.14.0"
+  }
+}

@@ -1,0 +1,74 @@
+# Multi-stage build for NestJS API
+
+# Stage 1: Build
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+COPY apps/api/package*.json ./apps/api/
+COPY packages/ai-engine/package*.json ./packages/ai-engine/
+COPY packages/imanage-sdk/package*.json ./packages/imanage-sdk/
+COPY packages/templates/package*.json ./packages/templates/
+
+# Install dependencies
+RUN npm ci --workspace=@lera-ai/api --workspace=@lera-ai/ai-engine --workspace=@lera-ai/imanage-sdk --workspace=@lera-ai/templates
+
+# Copy source files
+COPY tsconfig.base.json ./
+COPY apps/api ./apps/api
+COPY packages ./packages
+
+# Build packages first
+RUN npm run build -w packages/ai-engine
+RUN npm run build -w packages/imanage-sdk
+RUN npm run build -w packages/templates
+
+# Build API
+RUN npm run build -w apps/api
+
+# Stage 2: Production
+FROM node:20-alpine AS production
+
+WORKDIR /app
+
+# Add non-root user for security
+RUN addgroup -g 1001 -S nodejs
+RUN adduser -S nestjs -u 1001
+
+# Copy package files
+COPY package*.json ./
+COPY apps/api/package*.json ./apps/api/
+COPY packages/ai-engine/package*.json ./packages/ai-engine/
+COPY packages/imanage-sdk/package*.json ./packages/imanage-sdk/
+COPY packages/templates/package*.json ./packages/templates/
+
+# Install production dependencies only
+RUN npm ci --workspace=@lera-ai/api --workspace=@lera-ai/ai-engine --workspace=@lera-ai/imanage-sdk --workspace=@lera-ai/templates --omit=dev
+
+# Copy built files from builder
+COPY --from=builder /app/apps/api/dist ./apps/api/dist
+COPY --from=builder /app/packages/ai-engine/dist ./packages/ai-engine/dist
+COPY --from=builder /app/packages/imanage-sdk/dist ./packages/imanage-sdk/dist
+COPY --from=builder /app/packages/templates/dist ./packages/templates/dist
+
+# Set ownership
+RUN chown -R nestjs:nodejs /app
+
+# Switch to non-root user
+USER nestjs
+
+# Expose port
+EXPOSE 3001
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  CMD wget --no-verbose --tries=1 --spider http://localhost:3001/api/health || exit 1
+
+# Set environment
+ENV NODE_ENV=production
+ENV PORT=3001
+
+# Start the application
+CMD ["node", "apps/api/dist/main.js"]

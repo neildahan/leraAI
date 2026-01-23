@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  # MongoDB for local development/testing
+  mongodb:
+    image: mongo:7.0
+    container_name: lera-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: adminpassword
+      MONGO_INITDB_DATABASE: lera-ai
+    volumes:
+      - mongodb_data:/data/db
+      - ./docker/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    networks:
+      - lera-network
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # NestJS API
+  api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.api
+    container_name: lera-api
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=development
+      - PORT=3001
+      - MONGODB_URI=mongodb://admin:adminpassword@mongodb:27017/lera-ai?authSource=admin
+    env_file:
+      - .env
+    volumes:
+      - ./apps/api:/app/apps/api
+      - ./packages:/app/packages
+      - /app/node_modules
+      - /app/apps/api/node_modules
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      - lera-network
+
+  # React Web App
+  web:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.web
+    container_name: lera-web
+    restart: unless-stopped
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=http://localhost:3001
+    volumes:
+      - ./apps/web:/app/apps/web
+      - /app/node_modules
+      - /app/apps/web/node_modules
+    depends_on:
+      - api
+    networks:
+      - lera-network
+
+volumes:
+  mongodb_data:
+    driver: local
+
+networks:
+  lera-network:
+    driver: bridge

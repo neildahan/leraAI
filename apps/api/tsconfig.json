@@ -1,0 +1,28 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2021",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "strictPropertyInitialization": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "paths": {
+      "@/*": ["src/*"],
+      "@lera-ai/ai-engine": ["../../packages/ai-engine/src"],
+      "@lera-ai/imanage-sdk": ["../../packages/imanage-sdk/src"],
+      "@lera-ai/templates": ["../../packages/templates/src"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "test"]
+}

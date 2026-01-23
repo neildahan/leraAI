@@ -1,0 +1,23 @@
+{
+  "name": "@lera-ai/templates",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Document template engine for legal directory submissions",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "lint": "eslint src --ext .ts",
+    "test": "jest"
+  },
+  "dependencies": {
+    "docxtemplater": "^3.42.0",
+    "exceljs": "^4.4.0",
+    "pizzip": "^3.1.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.3"
+  }
+}
