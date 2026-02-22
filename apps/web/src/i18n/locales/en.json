@@ -93,6 +93,7 @@
   "dashboard": {
     "title": "Dashboard",
     "subtitle": "Overview of your legal directory submissions",
+    "welcomeBack": "Welcome Back",
     "totalMatters": "Total Matters",
     "allMattersDescription": "All matters in the system",
     "pendingReview": "Pending Review",
@@ -105,9 +106,14 @@
     "latestActions": "Latest actions in the system",
     "quickStats": "Quick Stats",
     "performanceMetrics": "Performance metrics",
-    "aiConfidenceScore": "AI Confidence Score (avg)",
+    "aiConfidenceScore": "AI Confidence Score",
     "submissionSuccessRate": "Submission Success Rate",
-    "timeSaved": "Time Saved (vs manual)"
+    "timeSaved": "Time Saved",
+    "vsLastMonth": "vs last month",
+    "statusDistribution": "Status Distribution",
+    "stayOnTrack": "Stay on track with your submissions!",
+    "getAutomaticReminders": "Get automatic reminders for deadlines",
+    "tryNow": "Try now"
   },
   "activity": {
     "matterApproved": "Matter approved",

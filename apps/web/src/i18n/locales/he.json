@@ -93,6 +93,7 @@
   "dashboard": {
     "title": "לוח בקרה",
     "subtitle": "סקירה כללית של הגשות הספריות המשפטיות שלך",
+    "welcomeBack": "ברוך שובך",
     "totalMatters": "סה\"כ תיקים",
     "allMattersDescription": "כל התיקים במערכת",
     "pendingReview": "ממתינים לבדיקה",
@@ -105,9 +106,14 @@
     "latestActions": "פעולות אחרונות במערכת",
     "quickStats": "סטטיסטיקות מהירות",
     "performanceMetrics": "מדדי ביצוע",
-    "aiConfidenceScore": "ציון אמון AI (ממוצע)",
+    "aiConfidenceScore": "ציון אמון AI",
     "submissionSuccessRate": "שיעור הצלחת הגשות",
-    "timeSaved": "זמן שנחסך (לעומת ידני)"
+    "timeSaved": "זמן שנחסך",
+    "vsLastMonth": "לעומת חודש שעבר",
+    "statusDistribution": "התפלגות סטטוסים",
+    "stayOnTrack": "הישאר מעודכן עם ההגשות שלך!",
+    "getAutomaticReminders": "קבל תזכורות אוטומטיות לדדליינים",
+    "tryNow": "נסה עכשיו"
   },
   "activity": {
     "matterApproved": "תיק אושר",
