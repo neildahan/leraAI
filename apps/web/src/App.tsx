@@ -13,6 +13,7 @@ import { SubmissionsPage } from '@/pages/submissions';
 import { LawyersPage } from '@/pages/lawyers';
 import { RefereesPage } from '@/pages/referees';
 import { ProfilePage } from '@/pages/profile';
+import { SettingsPage } from '@/pages/settings';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           <Route path="synthesis" element={<SynthesisPage />} />
           <Route path="templates" element={<TemplatesPage />} />
           <Route path="profile" element={<ProfilePage />} />
+          <Route path="settings" element={<SettingsPage />} />
         </Route>
       </Routes>
       <Toaster />

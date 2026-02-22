@@ -441,7 +441,72 @@
   "settings": {
     "language": "שפה",
     "english": "אנגלית",
-    "hebrew": "עברית"
+    "hebrew": "עברית",
+    "subtitle": "נהל את העדפות החשבון והאפליקציה שלך",
+    "saveChanges": "שמור שינויים",
+    "tabs": {
+      "general": "כללי",
+      "notifications": "התראות",
+      "tools": "כלים",
+      "security": "אבטחה",
+      "integrations": "אינטגרציות"
+    },
+    "general": {
+      "preferences": "העדפות",
+      "autoSave": "שמירה אוטומטית של טיוטות",
+      "autoSaveDesc": "שמור את העבודה שלך אוטומטית כל כמה דקות",
+      "smartSuggestions": "הצעות חכמות",
+      "smartSuggestionsDesc": "הצג הצעות מבוססות AI בזמן עריכה",
+      "display": "תצוגה",
+      "timezone": "אזור זמן",
+      "dateFormat": "פורמט תאריך"
+    },
+    "notifications": {
+      "email": "התראות במייל",
+      "emailEnabled": "התראות במייל",
+      "emailDesc": "קבל עדכונים והתראות במייל",
+      "weeklyDigest": "סיכום שבועי",
+      "weeklyDigestDesc": "קבל סיכום פעילות כל שבוע",
+      "push": "התראות דחיפה",
+      "pushEnabled": "התראות דחיפה",
+      "pushDesc": "קבל התראות בזמן אמת בדפדפן",
+      "deadlines": "תזכורות דדליין",
+      "deadlinesDesc": "קבל התראה לפני דדליינים של הגשות"
+    },
+    "tools": {
+      "quickAccess": "גישה מהירה",
+      "aiSynthesisDesc": "צור תיאורים לספריות עם AI",
+      "templatesDesc": "נהל תבניות ייצוא",
+      "aiFeatures": "יכולות AI",
+      "autoSynthesis": "סינתזה אוטומטית",
+      "autoSynthesisDesc": "צור תיאורים אוטומטית כשמתווספים תיקים",
+      "smartMatching": "התאמת תיקים חכמה",
+      "smartMatchingDesc": "AI מציע תיקים רלוונטיים להגשות",
+      "export": "הגדרות ייצוא",
+      "defaultFormat": "פורמט ייצוא ברירת מחדל",
+      "defaultTemplate": "תבנית ברירת מחדל",
+      "advanced": "מתקדם",
+      "aiModel": "מודל AI",
+      "aiModelDesc": "מודל מתקדם מספק סינתזה טובה יותר אך לוקח יותר זמן"
+    },
+    "security": {
+      "authentication": "אימות",
+      "twoFactor": "אימות דו-שלבי",
+      "twoFactorDesc": "הוסף שכבת אבטחה נוספת לחשבון שלך",
+      "sessionTimeout": "ניתוק אוטומטי",
+      "sessionTimeoutDesc": "התנתק אוטומטית לאחר 30 דקות של חוסר פעילות",
+      "sessions": "חיבורים פעילים"
+    },
+    "integrations": {
+      "connected": "מחובר",
+      "connect": "התחבר",
+      "imanageDesc": "מערכת ניהול מסמכים",
+      "api": "גישת API",
+      "enableApi": "אפשר גישת API",
+      "apiDesc": "אפשר לאפליקציות חיצוניות גישה לנתונים שלך",
+      "apiKey": "מפתח API",
+      "regenerate": "צור מחדש"
+    }
   },
   "profile": {
     "subtitle": "נהל את הגדרות החשבון וההעדפות שלך",

@@ -11,12 +11,13 @@ interface StatCardProps {
     label?: string;
   };
   icon?: LucideIcon;
-  iconColor?: 'blue' | 'green' | 'purple' | 'orange' | 'red' | 'yellow';
+  iconColor?: 'blue' | 'green' | 'purple' | 'orange' | 'red' | 'yellow' | 'lera';
   className?: string;
 }
 
 const iconColorStyles = {
-  blue: 'bg-blue-100 text-blue-600',
+  blue: 'bg-lera-100 text-lera-800',
+  lera: 'bg-lera-100 text-lera-800',
   green: 'bg-green-100 text-green-600',
   purple: 'bg-purple-100 text-purple-600',
   orange: 'bg-orange-100 text-orange-600',

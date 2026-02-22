@@ -75,7 +75,7 @@ export function SynthesisPage() {
       case 'completed':
         return <CheckCircle className="h-5 w-5 text-green-500" />;
       case 'processing':
-        return <RefreshCw className="h-5 w-5 animate-spin text-blue-500" />;
+        return <RefreshCw className="h-5 w-5 animate-spin text-lera-800" />;
       case 'failed':
         return <AlertCircle className="h-5 w-5 text-red-500" />;
       default:

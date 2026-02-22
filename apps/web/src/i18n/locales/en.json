@@ -441,7 +441,72 @@
   "settings": {
     "language": "Language",
     "english": "English",
-    "hebrew": "Hebrew"
+    "hebrew": "Hebrew",
+    "subtitle": "Manage your account and application preferences",
+    "saveChanges": "Save Changes",
+    "tabs": {
+      "general": "General",
+      "notifications": "Notifications",
+      "tools": "Tools",
+      "security": "Security",
+      "integrations": "Integrations"
+    },
+    "general": {
+      "preferences": "Preferences",
+      "autoSave": "Auto-save drafts",
+      "autoSaveDesc": "Automatically save your work every few minutes",
+      "smartSuggestions": "Smart suggestions",
+      "smartSuggestionsDesc": "Show AI-powered suggestions while editing",
+      "display": "Display",
+      "timezone": "Timezone",
+      "dateFormat": "Date format"
+    },
+    "notifications": {
+      "email": "Email Notifications",
+      "emailEnabled": "Email notifications",
+      "emailDesc": "Receive updates and alerts via email",
+      "weeklyDigest": "Weekly digest",
+      "weeklyDigestDesc": "Get a summary of activity every week",
+      "push": "Push Notifications",
+      "pushEnabled": "Push notifications",
+      "pushDesc": "Receive real-time notifications in browser",
+      "deadlines": "Deadline reminders",
+      "deadlinesDesc": "Get notified before submission deadlines"
+    },
+    "tools": {
+      "quickAccess": "Quick Access",
+      "aiSynthesisDesc": "Generate directory descriptions with AI",
+      "templatesDesc": "Manage export templates",
+      "aiFeatures": "AI Features",
+      "autoSynthesis": "Auto AI Synthesis",
+      "autoSynthesisDesc": "Automatically generate descriptions when matters are added",
+      "smartMatching": "Smart matter matching",
+      "smartMatchingDesc": "AI suggests relevant matters for submissions",
+      "export": "Export Settings",
+      "defaultFormat": "Default export format",
+      "defaultTemplate": "Default template",
+      "advanced": "Advanced",
+      "aiModel": "AI Model",
+      "aiModelDesc": "Advanced model provides better synthesis but takes longer"
+    },
+    "security": {
+      "authentication": "Authentication",
+      "twoFactor": "Two-factor authentication",
+      "twoFactorDesc": "Add an extra layer of security to your account",
+      "sessionTimeout": "Auto session timeout",
+      "sessionTimeoutDesc": "Automatically log out after 30 minutes of inactivity",
+      "sessions": "Active Sessions"
+    },
+    "integrations": {
+      "connected": "Connected",
+      "connect": "Connect",
+      "imanageDesc": "Document management system",
+      "api": "API Access",
+      "enableApi": "Enable API access",
+      "apiDesc": "Allow external applications to access your data",
+      "apiKey": "API Key",
+      "regenerate": "Regenerate"
+    }
   },
   "profile": {
     "subtitle": "Manage your account settings and preferences",

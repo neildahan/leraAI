@@ -9,12 +9,13 @@ interface PromoCardProps {
   buttonText?: string;
   buttonIcon?: LucideIcon;
   onButtonClick?: () => void;
-  gradient?: 'blue' | 'purple' | 'green' | 'orange';
+  gradient?: 'blue' | 'purple' | 'green' | 'orange' | 'lera';
   className?: string;
 }
 
 const gradientStyles = {
-  blue: 'bg-gradient-to-br from-blue-400 via-blue-500 to-cyan-500',
+  blue: 'bg-gradient-to-br from-lera-600 via-lera-700 to-lera-800',
+  lera: 'bg-gradient-to-br from-lera-600 via-lera-700 to-lera-800',
   purple: 'bg-gradient-to-br from-purple-400 via-purple-500 to-pink-500',
   green: 'bg-gradient-to-br from-green-400 via-green-500 to-teal-500',
   orange: 'bg-gradient-to-br from-orange-400 via-orange-500 to-red-500',

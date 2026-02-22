@@ -32,7 +32,7 @@ export function RefereesPage() {
 
   const statusConfig: Record<string, { color: string; icon: React.ReactNode }> = {
     pending: { color: 'bg-gray-100 text-gray-700', icon: <Clock className="h-3 w-3" /> },
-    contacted: { color: 'bg-blue-100 text-blue-700', icon: <Mail className="h-3 w-3" /> },
+    contacted: { color: 'bg-lera-100 text-lera-800', icon: <Mail className="h-3 w-3" /> },
     confirmed: { color: 'bg-green-100 text-green-700', icon: <CheckCircle2 className="h-3 w-3" /> },
     declined: { color: 'bg-red-100 text-red-700', icon: <XCircle className="h-3 w-3" /> },
   };

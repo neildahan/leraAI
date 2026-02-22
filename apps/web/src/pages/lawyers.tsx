@@ -21,7 +21,7 @@ interface Lawyer {
 }
 
 const levelColors: Record<string, string> = {
-  partner: 'bg-blue-100 text-blue-700',
+  partner: 'bg-lera-100 text-lera-800',
   senior_partner: 'bg-purple-100 text-purple-700',
   managing_partner: 'bg-indigo-100 text-indigo-700',
   counsel: 'bg-green-100 text-green-700',

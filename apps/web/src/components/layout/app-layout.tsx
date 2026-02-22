@@ -5,8 +5,6 @@ import {
   LayoutDashboard,
   FileText,
   FolderOpen,
-  Sparkles,
-  FileOutput,
   LogOut,
   Send,
   Users,
@@ -16,9 +14,11 @@ import {
   HelpCircle,
   ChevronDown,
   User,
+  Sparkles,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/hooks/use-auth';
+import { NotificationsPanel } from '@/components/ui/notifications-panel';
 
 // Navigation items grouped by section
 const mainNavigation = [
@@ -30,13 +30,8 @@ const mainNavigation = [
   { key: 'nav.imanage', href: '/imanage', icon: FolderOpen },
 ];
 
-const toolsNavigation = [
-  { key: 'nav.aiSynthesis', href: '/synthesis', icon: Sparkles },
-  { key: 'nav.templates', href: '/templates', icon: FileOutput },
-];
 
 const supportNavigation = [
-  { key: 'nav.notifications', href: '/notifications', icon: Bell, badge: 2 },
   { key: 'nav.support', href: '/support', icon: HelpCircle },
   { key: 'nav.settings', href: '/settings', icon: Settings },
 ];
@@ -61,14 +56,14 @@ function NavItem({ item, isActive }: NavItemProps) {
       className={cn(
         'flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200',
         isActive
-          ? 'bg-blue-50 text-blue-600'
+          ? 'bg-lera-50 text-lera-800'
           : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
       )}
     >
-      <Icon className={cn('h-5 w-5', isActive ? 'text-blue-600' : 'text-gray-400')} />
+      <Icon className={cn('h-5 w-5', isActive ? 'text-lera-800' : 'text-gray-400')} />
       <span className="flex-1">{t(item.key)}</span>
       {item.badge && (
-        <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-blue-500 px-1.5 text-xs font-medium text-white">
+        <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-lera-800 px-1.5 text-xs font-medium text-white">
           {item.badge}
         </span>
       )}
@@ -90,6 +85,7 @@ export function AppLayout() {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.dir() === 'rtl';
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
 
   // Close menu when clicking outside
@@ -123,14 +119,14 @@ export function AppLayout() {
       <aside className="flex w-72 flex-col bg-white/80 backdrop-blur-sm m-3 rounded-2xl shadow-sm border border-gray-100">
         {/* Logo */}
         <div className="flex items-center gap-3 px-6 py-6">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg shadow-blue-500/30">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-lera-600 to-lera-800 shadow-lg shadow-lera-800/30">
             <Sparkles className="h-5 w-5 text-white" />
           </div>
           <span className="text-xl font-semibold tracking-tight text-gray-800">Lera AI</span>
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 overflow-y-auto px-3 py-2">
+        <nav className="flex-1 px-3 py-2">
           {/* Main Section */}
           <div className="mb-6">
             <SectionHeader>{t('nav.sections.general', 'General')}</SectionHeader>
@@ -145,24 +141,24 @@ export function AppLayout() {
             </div>
           </div>
 
-          {/* Tools Section */}
-          <div className="mb-6">
-            <SectionHeader>{t('nav.sections.tools', 'Tools')}</SectionHeader>
-            <div className="space-y-1">
-              {toolsNavigation.map((item) => (
-                <NavItem
-                  key={item.key}
-                  item={item}
-                  isActive={location.pathname === item.href}
-                />
-              ))}
-            </div>
-          </div>
-
           {/* Support Section */}
           <div className="mb-6">
             <SectionHeader>{t('nav.sections.support', 'Support')}</SectionHeader>
             <div className="space-y-1">
+              {/* Notifications - opens panel */}
+              <button
+                onClick={() => setIsNotificationsOpen(true)}
+                className={cn(
+                  'flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200',
+                  'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                )}
+              >
+                <Bell className="h-5 w-5 text-gray-400" />
+                <span className="flex-1 text-start">{t('nav.notifications')}</span>
+                <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-lera-800 px-1.5 text-xs font-medium text-white">
+                  2
+                </span>
+              </button>
               {supportNavigation.map((item) => (
                 <NavItem
                   key={item.key}
@@ -182,7 +178,7 @@ export function AppLayout() {
               className="flex items-center gap-3 rounded-xl p-3 transition-colors hover:bg-gray-50 cursor-pointer group"
             >
               {/* Avatar */}
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-blue-400 to-purple-500 text-sm font-medium text-white shadow-md">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-lera-600 to-lera-800 text-sm font-medium text-white shadow-md">
                 {getInitials()}
               </div>
 
@@ -242,6 +238,13 @@ export function AppLayout() {
           <Outlet />
         </div>
       </main>
+
+      {/* Notifications Panel */}
+      <NotificationsPanel
+        isOpen={isNotificationsOpen}
+        onClose={() => setIsNotificationsOpen(false)}
+        isRTL={isRTL}
+      />
     </div>
   );
 }

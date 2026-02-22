@@ -77,7 +77,7 @@ interface ApiLawyer {
 
 const statusColors: Record<string, string> = {
   draft: 'bg-gray-100 text-gray-700',
-  in_progress: 'bg-blue-100 text-blue-700',
+  in_progress: 'bg-lera-100 text-lera-800',
   review: 'bg-yellow-100 text-yellow-700',
   approved: 'bg-green-100 text-green-700',
   exported: 'bg-purple-100 text-purple-700',
@@ -390,7 +390,7 @@ export function SubmissionsPage() {
             <CardTitle className="text-sm font-medium text-muted-foreground">{t('submissions.inProgress')}</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-blue-600">
+            <div className="text-2xl font-bold text-lera-800">
               {submissions.filter(s => s.status === 'in_progress').length}
             </div>
           </CardContent>

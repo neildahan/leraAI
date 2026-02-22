@@ -101,7 +101,7 @@ export function ProfilePage() {
 
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
           {/* Profile Header with Avatar */}
-          <div className="bg-gradient-to-r from-blue-500 to-blue-600 px-8 py-10">
+          <div className="bg-gradient-to-r from-lera-600 to-lera-800 px-8 py-10">
             <div className="flex items-end gap-6">
               <div className="relative">
                 <input
@@ -124,7 +124,7 @@ export function ProfilePage() {
                 )}
                 <button
                   onClick={handleAvatarClick}
-                  className="absolute -bottom-1 -right-1 h-9 w-9 rounded-full bg-white shadow-md flex items-center justify-center text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-colors"
+                  className="absolute -bottom-1 -right-1 h-9 w-9 rounded-full bg-white shadow-md flex items-center justify-center text-gray-600 hover:text-lera-800 hover:bg-lera-50 transition-colors"
                 >
                   <Camera className="h-4 w-4" />
                 </button>
@@ -133,7 +133,7 @@ export function ProfilePage() {
                 <h2 className="text-xl font-semibold text-white">
                   {firstName && lastName ? `${firstName} ${lastName}` : firstName || user?.email?.split('@')[0] || 'User'}
                 </h2>
-                <p className="text-blue-100">{user?.email}</p>
+                <p className="text-lera-100">{user?.email}</p>
               </div>
             </div>
           </div>
@@ -154,7 +154,7 @@ export function ProfilePage() {
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
                     placeholder={t('profile.firstNamePlaceholder', 'Enter your first name')}
-                    className="h-12 rounded-xl border-gray-200 focus:border-blue-500 focus:ring-blue-500"
+                    className="h-12 rounded-xl border-gray-200 focus:border-lera-800 focus:ring-lera-800"
                   />
                 </div>
                 <div className="space-y-2">
@@ -164,7 +164,7 @@ export function ProfilePage() {
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
                     placeholder={t('profile.lastNamePlaceholder', 'Enter your last name')}
-                    className="h-12 rounded-xl border-gray-200 focus:border-blue-500 focus:ring-blue-500"
+                    className="h-12 rounded-xl border-gray-200 focus:border-lera-800 focus:ring-lera-800"
                   />
                 </div>
               </div>
@@ -201,7 +201,7 @@ export function ProfilePage() {
                     className={cn(
                       'flex items-center gap-4 rounded-xl border-2 p-5 transition-all duration-200 text-start',
                       selectedLanguage === lang.code
-                        ? 'border-blue-500 bg-blue-50/50'
+                        ? 'border-lera-800 bg-lera-50/50'
                         : 'border-gray-100 hover:border-gray-200 hover:bg-gray-50'
                     )}
                   >
@@ -213,7 +213,7 @@ export function ProfilePage() {
                     <div className={cn(
                       'h-6 w-6 rounded-full flex items-center justify-center transition-all',
                       selectedLanguage === lang.code
-                        ? 'bg-blue-500'
+                        ? 'bg-lera-800'
                         : 'border-2 border-gray-200'
                     )}>
                       {selectedLanguage === lang.code && (
@@ -249,7 +249,7 @@ export function ProfilePage() {
             <div className="flex justify-end pt-4">
               <Button
                 onClick={handleSave}
-                className="h-12 px-8 rounded-xl bg-blue-500 hover:bg-blue-600 text-white font-medium"
+                className="h-12 px-8 rounded-xl bg-lera-800 hover:bg-lera-900 text-white font-medium"
               >
                 {t('profile.saveChanges', 'Save Changes')}
               </Button>

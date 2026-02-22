@@ -50,7 +50,7 @@ export function DashboardPage() {
   if (isLoading) {
     return (
       <div className="flex h-64 items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-blue-500 border-t-transparent" />
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-lera-800 border-t-transparent" />
       </div>
     );
   }
@@ -109,7 +109,7 @@ export function DashboardPage() {
           <div className="space-y-4">
             {[
               { action: t('activity.matterApproved'), matter: 'Acme Corp Acquisition', time: t('activity.hoursAgo', { count: 2 }), color: 'bg-green-500' },
-              { action: t('activity.aiSynthesisComplete'), matter: 'Beta Industries M&A', time: t('activity.hoursAgo', { count: 4 }), color: 'bg-blue-500' },
+              { action: t('activity.aiSynthesisComplete'), matter: 'Beta Industries M&A', time: t('activity.hoursAgo', { count: 4 }), color: 'bg-lera-800' },
               { action: t('activity.exportGenerated'), matter: 'Gamma Holdings Deal', time: t('activity.daysAgo', { count: 1 }), color: 'bg-purple-500' },
               { action: t('activity.newMatterCreated'), matter: 'Delta Corp Financing', time: t('activity.daysAgo', { count: 2 }), color: 'bg-orange-500' },
             ].map((activity, i) => (
@@ -144,10 +144,10 @@ export function DashboardPage() {
             <div>
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm text-gray-600">{t('dashboard.submissionSuccessRate')}</span>
-                <span className="text-sm font-semibold text-blue-600">94%</span>
+                <span className="text-sm font-semibold text-lera-800">94%</span>
               </div>
               <div className="h-2 rounded-full bg-gray-100">
-                <div className="h-2 w-[94%] rounded-full bg-gradient-to-r from-blue-400 to-blue-500" />
+                <div className="h-2 w-[94%] rounded-full bg-gradient-to-r from-lera-600 to-lera-800" />
               </div>
             </div>
 
@@ -174,28 +174,6 @@ export function DashboardPage() {
         />
       </div>
 
-      {/* Status Distribution */}
-      <ChartCard
-        title={t('dashboard.statusDistribution', 'Status Distribution')}
-        filterOptions={['This Week', 'This Month', 'This Year']}
-        selectedFilter="This Month"
-      >
-        <div className="grid grid-cols-4 gap-4">
-          {[
-            { label: t('matters.status.draft', 'Draft'), value: stats?.byStatus?.draft || 0, color: 'bg-gray-400' },
-            { label: t('matters.status.review', 'In Review'), value: stats?.byStatus?.review || 0, color: 'bg-orange-400' },
-            { label: t('matters.status.approved', 'Approved'), value: stats?.byStatus?.approved || 0, color: 'bg-green-400' },
-            { label: t('matters.status.exported', 'Exported'), value: stats?.byStatus?.exported || 0, color: 'bg-purple-400' },
-          ].map((item) => (
-            <div key={item.label} className="text-center">
-              <div className={`mx-auto h-16 w-16 rounded-2xl ${item.color} flex items-center justify-center mb-3`}>
-                <span className="text-xl font-bold text-white">{item.value}</span>
-              </div>
-              <p className="text-sm text-gray-600">{item.label}</p>
-            </div>
-          ))}
-        </div>
-      </ChartCard>
     </div>
   );
 }

@@ -101,7 +101,7 @@ export function TemplatesPage() {
       case 'xlsx':
         return <Table2 className="h-5 w-5 text-green-600" />;
       default:
-        return <FileText className="h-5 w-5 text-blue-600" />;
+        return <FileText className="h-5 w-5 text-lera-800" />;
     }
   };
 

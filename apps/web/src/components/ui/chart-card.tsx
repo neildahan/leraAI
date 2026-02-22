@@ -61,7 +61,7 @@ export function ChartCard({
                     }}
                     className={cn(
                       'w-full px-4 py-2 text-start text-sm hover:bg-gray-50 transition-colors',
-                      selectedFilter === option ? 'text-blue-600 font-medium' : 'text-gray-700'
+                      selectedFilter === option ? 'text-lera-800 font-medium' : 'text-gray-700'
                     )}
                   >
                     {option}
