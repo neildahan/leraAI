@@ -212,7 +212,7 @@ export function RefereesPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">{t('referees.title')}</h1>
+          <h1 className="text-2xl font-semibold text-gray-900">{t('referees.title')}</h1>
           <p className="text-muted-foreground">{t('referees.subtitle')}</p>
         </div>
         <Button onClick={() => toast({ title: t('common.comingSoon'), description: t('referees.addRefereeForm') })}>

@@ -366,7 +366,7 @@ export function SubmissionsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">{t('submissions.title')}</h1>
+          <h1 className="text-2xl font-semibold text-gray-900">{t('submissions.title')}</h1>
           <p className="text-muted-foreground">{t('submissions.subtitle')}</p>
         </div>
         <Button onClick={() => setShowWizard(true)}>
@@ -664,7 +664,7 @@ function SubmissionWizard({ onClose }: WizardProps) {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">{t('submissions.newSubmission')}</h1>
+          <h1 className="text-2xl font-semibold text-gray-900">{t('submissions.newSubmission')}</h1>
           <p className="text-muted-foreground">{t('submissions.createNewSubmission')}</p>
         </div>
         <Button variant="outline" onClick={onClose}>{t('common.cancel')}</Button>

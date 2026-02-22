@@ -95,7 +95,7 @@ export function ProfilePage() {
     <div className="space-y-8">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">{t('nav.myProfile', 'My Profile')}</h1>
+        <h1 className="text-2xl font-semibold text-gray-900">{t('nav.myProfile', 'My Profile')}</h1>
         <p className="text-muted-foreground">{t('profile.subtitle', 'Manage your account settings and preferences')}</p>
       </div>
 
