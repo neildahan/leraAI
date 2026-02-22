@@ -6,7 +6,11 @@ interface LeraLogoProps {
 }
 
 export function LeraLogo({ className, variant = 'default' }: LeraLogoProps) {
-  const id = `lera-gradient-${Math.random().toString(36).substr(2, 9)}`;
+  const id = `lera-grad-${Math.random().toString(36).substr(2, 9)}`;
+
+  const colors = variant === 'white'
+    ? { c1: '#ffffff', c2: 'rgba(255,255,255,0.7)', c3: 'rgba(255,255,255,0.5)' }
+    : { c1: '#003545', c2: '#0097b2', c3: '#00d4aa' };
 
   return (
     <svg
@@ -16,41 +20,25 @@ export function LeraLogo({ className, variant = 'default' }: LeraLogoProps) {
       className={cn('h-10 w-10', className)}
     >
       <defs>
-        {/* Gradient for modern feel */}
-        <linearGradient id={id} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor={variant === 'white' ? '#ffffff' : '#00b4d8'} />
-          <stop offset="100%" stopColor={variant === 'white' ? 'rgba(255,255,255,0.7)' : '#003545'} />
+        <linearGradient id={id} x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor={colors.c1} />
+          <stop offset="100%" stopColor={colors.c2} />
         </linearGradient>
       </defs>
 
-      {/* Modern abstract L mark with gradient */}
-      {/* Vertical bar */}
-      <rect
-        x="8"
-        y="6"
-        width="10"
-        height="28"
-        rx="5"
-        fill={`url(#${id})`}
+      {/* Abstract flowing shapes - represents AI synthesis/flow */}
+
+      {/* Main curved shape */}
+      <path
+        d="M8 32 Q8 8 20 8 Q32 8 32 20 Q32 28 24 28 Q18 28 18 22 Q18 16 24 16"
+        stroke={`url(#${id})`}
+        strokeWidth="6"
+        strokeLinecap="round"
+        fill="none"
       />
 
-      {/* Horizontal bar - slightly overlapping */}
-      <rect
-        x="8"
-        y="24"
-        width="24"
-        height="10"
-        rx="5"
-        fill={variant === 'white' ? 'rgba(255,255,255,0.85)' : '#003545'}
-      />
-
-      {/* Small accent dot - AI element */}
-      <circle
-        cx="32"
-        cy="12"
-        r="4"
-        fill={variant === 'white' ? '#ffffff' : '#00b4d8'}
-      />
+      {/* Accent dot */}
+      <circle cx="30" cy="10" r="4" fill={colors.c3} />
     </svg>
   );
 }
