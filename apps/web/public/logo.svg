@@ -1,20 +1,6 @@
 <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="lera-grad" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#003545"/>
-      <stop offset="100%" stop-color="#0097b2"/>
-    </linearGradient>
-  </defs>
-
-  <!-- Abstract spiral flow - represents AI synthesis -->
-  <path
-    d="M8 32 Q8 8 20 8 Q32 8 32 20 Q32 28 24 28 Q18 28 18 22 Q18 16 24 16"
-    stroke="url(#lera-grad)"
-    stroke-width="6"
-    stroke-linecap="round"
-    fill="none"
-  />
-
-  <!-- Accent dot -->
+  <!-- Clean overlapping circles -->
+  <circle cx="16" cy="20" r="12" fill="#0097b2"/>
+  <circle cx="24" cy="20" r="10" fill="#003545"/>
   <circle cx="30" cy="10" r="4" fill="#00d4aa"/>
 </svg>
