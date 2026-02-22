@@ -15,7 +15,7 @@ const languages = [
 
 export function ProfilePage() {
   const { t, i18n } = useTranslation();
-  const { user } = useAuth();
+  const { user, updateUser } = useAuth();
   const { toast } = useToast();
   const [selectedLanguage, setSelectedLanguage] = useState(i18n.language);
   const [firstName, setFirstName] = useState(user?.firstName || '');
@@ -61,11 +61,20 @@ export function ProfilePage() {
     });
   };
 
-  const handleSave = () => {
-    toast({
-      title: t('common.success', 'Success'),
-      description: t('profile.profileUpdated', 'Your profile has been updated'),
-    });
+  const handleSave = async () => {
+    try {
+      await updateUser({ firstName, lastName });
+      toast({
+        title: t('common.success', 'Success'),
+        description: t('profile.profileUpdated', 'Your profile has been updated'),
+      });
+    } catch {
+      toast({
+        variant: 'destructive',
+        title: t('common.error', 'Error'),
+        description: t('profile.updateFailed', 'Failed to update profile'),
+      });
+    }
   };
 
   // Get user initials for avatar

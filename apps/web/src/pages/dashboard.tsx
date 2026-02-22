@@ -74,28 +74,24 @@ export function DashboardPage() {
         <StatCard
           title={t('dashboard.totalMatters')}
           value={stats?.total || 0}
-          trend={{ value: 12.5, isPositive: true, label: t('dashboard.vsLastMonth', 'vs last month') }}
           icon={FileText}
           iconColor="blue"
         />
         <StatCard
           title={t('dashboard.pendingReview')}
           value={stats?.pendingReview || 0}
-          trend={{ value: 3.2, isPositive: false, label: t('dashboard.vsLastMonth', 'vs last month') }}
           icon={Clock}
           iconColor="orange"
         />
         <StatCard
           title={t('dashboard.approved')}
           value={stats?.byStatus?.approved || 0}
-          trend={{ value: 8.1, isPositive: true, label: t('dashboard.vsLastMonth', 'vs last month') }}
           icon={CheckCircle}
           iconColor="green"
         />
         <StatCard
           title={t('dashboard.exportedThisMonth')}
           value={stats?.exportedThisMonth || 0}
-          trend={{ value: 15.3, isPositive: true, label: t('dashboard.vsLastMonth', 'vs last month') }}
           icon={FileOutput}
           iconColor="purple"
         />

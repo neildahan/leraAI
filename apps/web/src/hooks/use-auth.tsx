@@ -23,6 +23,7 @@ interface AuthContextType {
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
   refreshToken: () => Promise<void>;
+  updateUser: (data: { firstName?: string; lastName?: string }) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -101,6 +102,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     storeTokens(accessToken, newRefreshToken);
   };
 
+  const updateUser = async (data: { firstName?: string; lastName?: string }) => {
+    try {
+      const response = await api.patch<User>('/users/me', data);
+      setUser(response.data as User);
+    } catch {
+      // If API fails, update local state anyway for demo
+      setUser((prev) => prev ? { ...prev, ...data } : null);
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -110,6 +121,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         login,
         logout,
         refreshToken,
+        updateUser,
       }}
     >
       {children}

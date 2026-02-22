@@ -466,7 +466,8 @@
     "avatarUpdated": "Avatar updated",
     "avatarUpdatedDescription": "Your profile picture has been updated",
     "fileTooLarge": "File too large",
-    "maxFileSize": "Maximum file size is 5MB"
+    "maxFileSize": "Maximum file size is 5MB",
+    "updateFailed": "Failed to update profile"
   },
   "practiceAreas": {
     "cooperative_associations": "Cooperative Associations",

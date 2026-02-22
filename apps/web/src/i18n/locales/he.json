@@ -466,7 +466,8 @@
     "avatarUpdated": "התמונה עודכנה",
     "avatarUpdatedDescription": "תמונת הפרופיל שלך עודכנה",
     "fileTooLarge": "הקובץ גדול מדי",
-    "maxFileSize": "גודל הקובץ המקסימלי הוא 5MB"
+    "maxFileSize": "גודל הקובץ המקסימלי הוא 5MB",
+    "updateFailed": "עדכון הפרופיל נכשל"
   },
   "practiceAreas": {
     "cooperative_associations": "אגודות שיתופיות",
