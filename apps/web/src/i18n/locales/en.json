@@ -597,5 +597,15 @@
       "name": "Dun's 100",
       "description": "Israeli legal market rankings"
     }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "all": "All",
+    "unread": "Unread",
+    "unreadCount": "{{count}} unread",
+    "markAllRead": "Mark all read",
+    "noNotifications": "All caught up!",
+    "noNewNotifications": "No new notifications",
+    "viewAll": "View all notifications"
   }
 }

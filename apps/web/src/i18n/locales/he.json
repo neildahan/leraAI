@@ -597,5 +597,15 @@
       "name": "דנ'ס 100",
       "description": "דירוגי השוק המשפטי הישראלי"
     }
+  },
+  "notifications": {
+    "title": "התראות",
+    "all": "הכל",
+    "unread": "לא נקראו",
+    "unreadCount": "{{count}} לא נקראו",
+    "markAllRead": "סמן הכל כנקרא",
+    "noNotifications": "הכל נקרא!",
+    "noNewNotifications": "אין התראות חדשות",
+    "viewAll": "צפה בכל ההתראות"
   }
 }

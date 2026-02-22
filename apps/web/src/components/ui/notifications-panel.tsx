@@ -157,7 +157,7 @@ export function NotificationsPanel({ isOpen, onClose, isRTL = false }: Notificat
                 {t('notifications.title', 'Notifications')}
               </h2>
               {unreadCount > 0 && (
-                <p className="text-xs text-gray-500">{unreadCount} unread</p>
+                <p className="text-xs text-gray-500">{t('notifications.unreadCount', { count: unreadCount })}</p>
               )}
             </div>
           </div>
@@ -220,7 +220,7 @@ export function NotificationsPanel({ isOpen, onClose, isRTL = false }: Notificat
                 <Check className="h-6 w-6 text-gray-400" />
               </div>
               <p className="text-sm font-medium">{t('notifications.noNotifications', 'All caught up!')}</p>
-              <p className="text-xs text-gray-400 mt-1">No new notifications</p>
+              <p className="text-xs text-gray-400 mt-1">{t('notifications.noNewNotifications', 'No new notifications')}</p>
             </div>
           ) : (
             Object.entries(groupedNotifications).map(([date, items]) => (
