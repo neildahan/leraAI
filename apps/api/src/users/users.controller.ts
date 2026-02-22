@@ -2,6 +2,7 @@ import {
   Controller,
   Get,
   Put,
+  Patch,
   Delete,
   Body,
   Param,
@@ -53,6 +54,13 @@ export class UsersController {
   @ApiOperation({ summary: 'Update current user profile' })
   @ApiResponse({ status: 200, description: 'Profile updated' })
   async updateProfile(@CurrentUser() user: TokenPayload, @Body() updateUserDto: UpdateUserDto) {
+    return this.usersService.update(user.userId, updateUserDto);
+  }
+
+  @Patch('me')
+  @ApiOperation({ summary: 'Partially update current user profile' })
+  @ApiResponse({ status: 200, description: 'Profile updated' })
+  async patchProfile(@CurrentUser() user: TokenPayload, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update(user.userId, updateUserDto);
   }
 

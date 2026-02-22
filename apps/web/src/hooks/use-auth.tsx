@@ -103,13 +103,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const updateUser = async (data: { firstName?: string; lastName?: string }) => {
-    try {
-      const response = await api.patch<User>('/users/me', data);
-      setUser(response.data as User);
-    } catch {
-      // If API fails, update local state anyway for demo
-      setUser((prev) => prev ? { ...prev, ...data } : null);
-    }
+    const response = await api.patch<User>('/users/me', data);
+    setUser(response.data as User);
   };
 
   return (
