@@ -382,7 +382,7 @@ export function SettingsPage() {
 
           {/* Save Button */}
           <div className="mt-8 flex justify-end">
-            <Button className="h-11 px-6 rounded-xl bg-lera-800 hover:bg-lera-900">
+            <Button className="h-11 px-6 rounded-xl">
               {t('settings.saveChanges', 'Save Changes')}
             </Button>
           </div>

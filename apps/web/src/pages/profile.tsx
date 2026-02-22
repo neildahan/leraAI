@@ -249,7 +249,7 @@ export function ProfilePage() {
             <div className="flex justify-end pt-4">
               <Button
                 onClick={handleSave}
-                className="h-12 px-8 rounded-xl bg-lera-800 hover:bg-lera-900 text-white font-medium"
+                className="h-12 px-8 rounded-xl"
               >
                 {t('profile.saveChanges', 'Save Changes')}
               </Button>
