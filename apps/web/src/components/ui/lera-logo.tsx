@@ -21,11 +21,8 @@ export function LeraLogo({ className, variant = 'default' }: LeraLogoProps) {
       <circle cx="16" cy="20" r="12" fill={colors.secondary} />
       <circle cx="24" cy="20" r="10" fill={colors.primary} />
 
-      {/* AI Sparkle instead of dot */}
-      <path
-        d="M34 14 L36 18 L40 20 L36 22 L34 26 L32 22 L28 20 L32 18 Z"
-        fill={colors.accent}
-      />
+      {/* Accent dot */}
+      <circle cx="34" cy="14" r="4" fill={colors.accent} />
     </svg>
   );
 }
