@@ -1,12 +1,15 @@
 <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Clean checkmark with dot - Customer.io style -->
+  <defs>
+    <linearGradient id="lera-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00b4d8"/>
+      <stop offset="100%" stop-color="#003545"/>
+    </linearGradient>
+  </defs>
 
-  <!-- Short arm (back, lighter) -->
-  <path d="M8 20 L14 26" stroke="#0097b2" stroke-width="7" stroke-linecap="round"/>
+  <!-- Modern L with gradient -->
+  <rect x="8" y="6" width="10" height="28" rx="5" fill="url(#lera-grad)"/>
+  <rect x="8" y="24" width="24" height="10" rx="5" fill="#003545"/>
 
-  <!-- Long arm (front, brand color) -->
-  <path d="M14 26 L32 8" stroke="#003545" stroke-width="7" stroke-linecap="round"/>
-
-  <!-- AI dot (bright accent) -->
-  <circle cx="32" cy="8" r="4.5" fill="#00c2cb"/>
+  <!-- AI dot -->
+  <circle cx="32" cy="12" r="4" fill="#00b4d8"/>
 </svg>
