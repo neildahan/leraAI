@@ -14,8 +14,8 @@ import {
   HelpCircle,
   ChevronDown,
   User,
-  Sparkles,
 } from 'lucide-react';
+import { LeraLogo } from '@/components/ui/lera-logo';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/hooks/use-auth';
 import { NotificationsPanel } from '@/components/ui/notifications-panel';
@@ -119,9 +119,7 @@ export function AppLayout() {
       <aside className="flex w-72 flex-col bg-white/80 backdrop-blur-sm m-3 rounded-2xl shadow-sm border border-gray-100">
         {/* Logo */}
         <div className="flex items-center gap-3 px-6 py-6">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-lera-600 to-lera-800 shadow-lg shadow-lera-800/30">
-            <Sparkles className="h-5 w-5 text-white" />
-          </div>
+          <LeraLogo className="h-10 w-10" color="brand" />
           <span className="text-xl font-semibold tracking-tight text-gray-800">Lera AI</span>
         </div>
 

@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <!-- Background -->
+  <rect width="800" height="400" fill="#f8fafc"/>
+
+  <!-- Concept 1: Abstract L with AI nodes -->
+  <g transform="translate(80, 80)">
+    <text x="0" y="-20" font-family="system-ui" font-size="12" fill="#64748b">Concept 1: L + AI Network</text>
+    <!-- Main L shape -->
+    <path d="M20 20 L20 100 L70 100" stroke="#003545" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <!-- AI nodes -->
+    <circle cx="70" cy="40" r="6" fill="#003545"/>
+    <circle cx="90" cy="60" r="4" fill="#003545" opacity="0.6"/>
+    <circle cx="80" cy="80" r="5" fill="#003545" opacity="0.8"/>
+    <!-- Connection lines -->
+    <line x1="26" y1="40" x2="64" y2="40" stroke="#003545" stroke-width="1.5" opacity="0.4"/>
+    <line x1="70" y1="46" x2="70" y2="74" stroke="#003545" stroke-width="1.5" opacity="0.4"/>
+    <line x1="70" y1="40" x2="86" y2="58" stroke="#003545" stroke-width="1.5" opacity="0.3"/>
+  </g>
+
+  <!-- Concept 2: Document + Sparkle -->
+  <g transform="translate(280, 80)">
+    <text x="0" y="-20" font-family="system-ui" font-size="12" fill="#64748b">Concept 2: Document + AI Sparkle</text>
+    <!-- Document base -->
+    <rect x="20" y="20" width="60" height="80" rx="6" fill="#003545"/>
+    <!-- Document fold -->
+    <path d="M60 20 L80 20 L80 40 L60 40 Z" fill="#001a23"/>
+    <path d="M60 20 L60 40 L80 40" fill="none" stroke="#e2e8f0" stroke-width="1"/>
+    <!-- Lines on document -->
+    <line x1="32" y1="55" x2="68" y2="55" stroke="#e2e8f0" stroke-width="2" stroke-linecap="round"/>
+    <line x1="32" y1="67" x2="58" y2="67" stroke="#e2e8f0" stroke-width="2" stroke-linecap="round"/>
+    <line x1="32" y1="79" x2="52" y2="79" stroke="#e2e8f0" stroke-width="2" stroke-linecap="round"/>
+    <!-- AI Sparkle -->
+    <g transform="translate(72, 15)">
+      <path d="M8 0 L10 6 L16 8 L10 10 L8 16 L6 10 L0 8 L6 6 Z" fill="#003545"/>
+    </g>
+  </g>
+
+  <!-- Concept 3: Minimal Abstract Mark -->
+  <g transform="translate(480, 80)">
+    <text x="0" y="-20" font-family="system-ui" font-size="12" fill="#64748b">Concept 3: Abstract Flow</text>
+    <!-- Flowing lines representing synthesis -->
+    <path d="M20 90 Q50 90 50 60 Q50 30 80 30" stroke="#003545" stroke-width="8" stroke-linecap="round" fill="none"/>
+    <path d="M35 100 Q65 100 65 70 Q65 40 95 40" stroke="#003545" stroke-width="6" stroke-linecap="round" fill="none" opacity="0.6"/>
+    <!-- Endpoint dots -->
+    <circle cx="80" cy="30" r="6" fill="#003545"/>
+    <circle cx="95" cy="40" r="4" fill="#003545" opacity="0.6"/>
+  </g>
+
+  <!-- Concept 4: RECOMMENDED - Clean Geometric L -->
+  <g transform="translate(680, 80)">
+    <text x="0" y="-20" font-family="system-ui" font-size="12" fill="#64748b">Concept 4: Geometric (Rec.)</text>
+    <!-- Clean L with accent -->
+    <rect x="20" y="20" width="16" height="80" rx="4" fill="#003545"/>
+    <rect x="20" y="84" width="50" height="16" rx="4" fill="#003545"/>
+    <!-- Accent square -->
+    <rect x="56" y="68" width="14" height="14" rx="3" fill="#003545" opacity="0.5"/>
+  </g>
+
+  <!-- Full Logo Lockup -->
+  <g transform="translate(80, 260)">
+    <text x="0" y="-20" font-family="system-ui" font-size="12" fill="#64748b">Full Logo Lockup</text>
+    <!-- Icon -->
+    <rect x="0" y="10" width="12" height="60" rx="3" fill="#003545"/>
+    <rect x="0" y="58" width="38" height="12" rx="3" fill="#003545"/>
+    <rect x="28" y="46" width="10" height="10" rx="2" fill="#003545" opacity="0.5"/>
+    <!-- Wordmark -->
+    <text x="60" y="58" font-family="system-ui" font-size="42" font-weight="600" fill="#003545" letter-spacing="-1">Lera</text>
+    <text x="155" y="58" font-family="system-ui" font-size="42" font-weight="300" fill="#003545" letter-spacing="-1">AI</text>
+  </g>
+
+  <!-- Color Reference -->
+  <g transform="translate(400, 280)">
+    <text x="0" y="-20" font-family="system-ui" font-size="12" fill="#64748b">Brand Color</text>
+    <rect x="0" y="0" width="60" height="60" rx="8" fill="#003545"/>
+    <text x="70" y="20" font-family="monospace" font-size="14" fill="#003545">#003545</text>
+    <text x="70" y="40" font-family="monospace" font-size="11" fill="#64748b">RGB: 0, 53, 69</text>
+    <text x="70" y="55" font-family="monospace" font-size="11" fill="#64748b">HSL: 194°, 100%, 14%</text>
+  </g>
+</svg>
