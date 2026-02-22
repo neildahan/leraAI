@@ -102,8 +102,12 @@ export function DashboardPage() {
         {/* Activity Chart */}
         <ChartCard
           title={t('dashboard.recentActivity', 'Recent Activity')}
-          filterOptions={['Weekly', 'Monthly', 'Yearly']}
-          selectedFilter="Monthly"
+          filterOptions={[
+            t('dashboard.filters.weekly', 'Weekly'),
+            t('dashboard.filters.monthly', 'Monthly'),
+            t('dashboard.filters.yearly', 'Yearly')
+          ]}
+          selectedFilter={t('dashboard.filters.monthly', 'Monthly')}
           className="lg:col-span-1"
         >
           <div className="space-y-4">

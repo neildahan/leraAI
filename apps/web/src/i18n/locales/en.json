@@ -113,7 +113,12 @@
     "statusDistribution": "Status Distribution",
     "stayOnTrack": "Stay on track with your submissions!",
     "getAutomaticReminders": "Get automatic reminders for deadlines",
-    "tryNow": "Try now"
+    "tryNow": "Try now",
+    "filters": {
+      "weekly": "Weekly",
+      "monthly": "Monthly",
+      "yearly": "Yearly"
+    }
   },
   "activity": {
     "matterApproved": "Matter approved",

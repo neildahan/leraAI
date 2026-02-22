@@ -113,7 +113,12 @@
     "statusDistribution": "התפלגות סטטוסים",
     "stayOnTrack": "הישאר מעודכן עם ההגשות שלך!",
     "getAutomaticReminders": "קבל תזכורות אוטומטיות לדדליינים",
-    "tryNow": "נסה עכשיו"
+    "tryNow": "נסה עכשיו",
+    "filters": {
+      "weekly": "שבועי",
+      "monthly": "חודשי",
+      "yearly": "שנתי"
+    }
   },
   "activity": {
     "matterApproved": "תיק אושר",
