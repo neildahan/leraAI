@@ -902,25 +902,25 @@ function SubmissionWizard({ onClose }: WizardProps) {
             <div className="space-y-4">
               <h2 className="text-lg font-semibold">{t('submissions.reviewSubmission')}</h2>
               <div className="rounded-lg border p-4 space-y-3">
-                <div className="flex justify-between">
+                <div className="flex gap-2">
                   <span className="text-muted-foreground">{t('submissions.rankingType')}:</span>
                   <span className="font-medium">{rankingType ? t(`submissions.rankingTypes.${rankingType}`) : ''}</span>
                 </div>
                 {rankingType === 'department' && (
-                  <div className="flex justify-between">
+                  <div className="flex gap-2">
                     <span className="text-muted-foreground">{t('submissions.department')}:</span>
                     <span className="font-medium">{departmentName ? t(`practiceAreas.${departmentName}`, departmentName) : t('submissions.notSpecified')}</span>
                   </div>
                 )}
-                <div className="flex justify-between">
+                <div className="flex gap-2">
                   <span className="text-muted-foreground">{t('submissions.targetDirectories')}:</span>
                   <span className="font-medium">{selectedDirectories.map(d => directoryLabels[d]).join(', ')}</span>
                 </div>
-                <div className="flex justify-between">
+                <div className="flex gap-2">
                   <span className="text-muted-foreground">{t('submissions.mattersSelected')}:</span>
                   <span className="font-medium">{selectedMatters.length}</span>
                 </div>
-                <div className="flex justify-between">
+                <div className="flex gap-2">
                   <span className="text-muted-foreground">{t('common.year')}:</span>
                   <span className="font-medium">{new Date().getFullYear()}</span>
                 </div>
