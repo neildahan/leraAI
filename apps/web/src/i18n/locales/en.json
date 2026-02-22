@@ -58,18 +58,30 @@
     "rankings": "rankings"
   },
   "auth": {
-    "signIn": "Sign in",
+    "signIn": "Sign In",
     "signOut": "Sign out",
     "signingIn": "Signing in...",
     "welcome": "Welcome to Lera AI",
+    "helloAgain": "Hello Again!",
+    "trialMessage": "Let's get started with your 30 days trial",
     "loginDescription": "Sign in to access the legal directory automation platform",
     "email": "Email",
     "password": "Password",
     "emailPlaceholder": "you@lawfirm.com",
     "passwordPlaceholder": "Enter your password",
+    "recoveryPassword": "Recovery Password",
+    "orContinueWith": "Or continue with",
     "loginFailed": "Login failed",
     "invalidCredentials": "Invalid credentials",
-    "demoCredentials": "Demo credentials:"
+    "demoCredentials": "Demo credentials:",
+    "slides": {
+      "slide1Title": "Finally, all your work in one place.",
+      "slide1Subtitle": "Streamline your legal directory submissions",
+      "slide2Title": "AI-powered synthesis for better rankings.",
+      "slide2Subtitle": "Let AI help you create compelling submissions",
+      "slide3Title": "Save hours on every submission.",
+      "slide3Subtitle": "Automate repetitive tasks and focus on what matters"
+    }
   },
   "nav": {
     "dashboard": "Dashboard",

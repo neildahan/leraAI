@@ -62,14 +62,26 @@
     "signOut": "התנתק",
     "signingIn": "מתחבר...",
     "welcome": "ברוכים הבאים ל-Lera AI",
+    "helloAgain": "שלום שוב!",
+    "trialMessage": "בואו נתחיל עם 30 ימי הניסיון שלך",
     "loginDescription": "התחבר לפלטפורמת האוטומציה של ספריות משפטיות",
     "email": "דוא\"ל",
     "password": "סיסמה",
     "emailPlaceholder": "you@lawfirm.com",
     "passwordPlaceholder": "הזן את הסיסמה שלך",
+    "recoveryPassword": "שחזור סיסמה",
+    "orContinueWith": "או המשך עם",
     "loginFailed": "ההתחברות נכשלה",
     "invalidCredentials": "פרטי התחברות שגויים",
-    "demoCredentials": "פרטי התחברות לדוגמה:"
+    "demoCredentials": "פרטי התחברות לדוגמה:",
+    "slides": {
+      "slide1Title": "סוף סוף, כל העבודה שלך במקום אחד.",
+      "slide1Subtitle": "ייעל את הגשות הספריות המשפטיות שלך",
+      "slide2Title": "סינתזה מבוססת AI לדירוגים טובים יותר.",
+      "slide2Subtitle": "תן ל-AI לעזור לך ליצור הגשות משכנעות",
+      "slide3Title": "חסוך שעות בכל הגשה.",
+      "slide3Subtitle": "אוטומט משימות חוזרות והתמקד במה שחשוב"
+    }
   },
   "nav": {
     "dashboard": "לוח בקרה",
