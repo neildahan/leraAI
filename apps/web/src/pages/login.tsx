@@ -199,89 +199,15 @@ export function LoginPage() {
 
         {/* Right Side - Illustration Panel */}
         <div className="relative hidden w-1/2 overflow-hidden rounded-2xl lg:block m-3">
-          {/* Gradient Background with Illustration */}
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-300 via-purple-400 to-indigo-500">
-            {/* Abstract Landscape SVG */}
-            <svg
-              className="absolute inset-0 h-full w-full"
-              viewBox="0 0 500 600"
-              preserveAspectRatio="xMidYMid slice"
-              fill="none"
-            >
-              {/* Sky gradient overlay */}
-              <defs>
-                <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#c4b5fd" />
-                  <stop offset="50%" stopColor="#a78bfa" />
-                  <stop offset="100%" stopColor="#7c3aed" />
-                </linearGradient>
-                <linearGradient id="sunGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#fef3c7" />
-                  <stop offset="100%" stopColor="#fcd34d" />
-                </linearGradient>
-                <linearGradient id="mountainGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#1e1b4b" />
-                  <stop offset="100%" stopColor="#312e81" />
-                </linearGradient>
-                <linearGradient id="hillGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#4c1d95" />
-                  <stop offset="100%" stopColor="#5b21b6" />
-                </linearGradient>
-                <linearGradient id="waterGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#818cf8" />
-                  <stop offset="100%" stopColor="#6366f1" />
-                </linearGradient>
-              </defs>
-
-              {/* Sun/Moon */}
-              <circle cx="380" cy="200" r="50" fill="url(#sunGradient)" opacity="0.9" />
-
-              {/* Far mountains */}
-              <path
-                d="M0 350 Q100 280 200 320 Q300 360 400 300 Q450 270 500 290 L500 450 L0 450 Z"
-                fill="url(#mountainGradient)"
-                opacity="0.6"
-              />
-
-              {/* Mid mountains */}
-              <path
-                d="M0 380 Q80 330 150 360 Q250 400 350 350 Q420 310 500 340 L500 500 L0 500 Z"
-                fill="url(#hillGradient)"
-                opacity="0.8"
-              />
-
-              {/* Water/Lake */}
-              <path
-                d="M0 420 Q150 400 250 420 Q350 440 500 410 L500 600 L0 600 Z"
-                fill="url(#waterGradient)"
-                opacity="0.7"
-              />
-
-              {/* Trees silhouettes */}
-              <g fill="#1e1b4b" opacity="0.9">
-                {/* Tree 1 */}
-                <path d="M50 450 L50 480 L55 480 L55 450 L70 470 L60 470 L75 490 L30 490 L45 470 L35 470 Z" />
-                {/* Tree 2 */}
-                <path d="M90 440 L90 475 L95 475 L95 440 L115 465 L100 465 L120 490 L70 490 L90 465 L75 465 Z" />
-                {/* Tree 3 */}
-                <path d="M420 460 L420 490 L425 490 L425 460 L440 475 L430 475 L445 490 L405 490 L420 475 L410 475 Z" />
-                {/* Tree 4 */}
-                <path d="M460 450 L460 485 L465 485 L465 450 L485 470 L470 470 L490 490 L440 490 L460 470 L445 470 Z" />
-              </g>
-
-              {/* Decorative plants */}
-              <g fill="#312e81" opacity="0.7">
-                <path d="M470 350 Q480 320 485 350 Q490 320 500 350 L500 360 L470 360 Z" />
-                <path d="M450 370 Q455 350 460 370 Q465 345 475 370 L475 380 L450 380 Z" />
-              </g>
-
-              {/* Small birds */}
-              <g fill="#1e1b4b" opacity="0.5">
-                <path d="M100 200 Q105 195 110 200 Q105 198 100 200" />
-                <path d="M130 180 Q135 175 140 180 Q135 178 130 180" />
-                <path d="M160 210 Q165 205 170 210 Q165 208 160 210" />
-              </g>
-            </svg>
+          {/* Background Image */}
+          <div className="absolute inset-0">
+            <img
+              src="/login-hero.jpg"
+              alt="Legal AI illustration"
+              className="h-full w-full object-cover"
+            />
+            {/* Subtle gradient overlay for text readability */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#4a4a6a]/80 via-transparent to-transparent" />
           </div>
 
           {/* Content overlay */}
