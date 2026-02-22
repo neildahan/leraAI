@@ -143,7 +143,7 @@ export function NotificationsPanel({ isOpen, onClose, isRTL = false }: Notificat
         className={cn(
           "fixed top-3 z-50 w-96 max-h-[calc(100vh-24px)] bg-white rounded-2xl shadow-2xl border border-gray-200/50 flex flex-col overflow-hidden",
           "animate-in fade-in slide-in-from-left-2 duration-200",
-          isRTL ? "right-[19rem]" : "left-[19rem]"
+          isRTL ? "right-[16rem]" : "left-[16rem]"
         )}
       >
         {/* Header */}
