@@ -229,6 +229,8 @@
     "submissionCreated": "הגשה נוצרה",
     "submissionCreatedDescription": "ההגשה שלך נוצרה בהצלחה",
     "failedToCreateSubmission": "יצירת ההגשה נכשלה",
+    "submissionUpdated": "ההגשה עודכנה בהצלחה",
+    "failedToUpdateSubmission": "עדכון ההגשה נכשל",
     "pleaseSelectRankingType": "אנא בחר סוג דירוג",
     "pleaseSelectPracticeArea": "אנא בחר תחום עיסוק",
     "pleaseSelectAtLeastOneDirectory": "אנא בחר לפחות ספרייה אחת",
@@ -239,6 +241,7 @@
     "selectedMatters": "תיקים שנבחרו",
     "keyMattersIncluded": "תיקים מרכזיים הכלולים בהגשה זו",
     "noMattersSelectedYet": "לא נבחרו תיקים עדיין",
+    "unknownMatter": "תיק לא ידוע",
     "addMatters": "הוסף תיקים",
     "generatedContentPreview": "תצוגה מקדימה של תוכן שנוצר",
     "aiGeneratedContent": "תוכן שנוצר על ידי AI להגשת ספרייה",
@@ -270,7 +273,20 @@
     "pleaseAddMattersBeforeGenerating": "אנא הוסף תיקים לפני יצירת תוכן",
     "servicesProvided": "שירותים שניתנו",
     "otherLawFirmsInvolved": "משרדי עורכי דין אחרים שהיו מעורבים",
-    "representing": "מייצג"
+    "representing": "מייצג",
+    "rankingTypes": {
+      "firm": "משרד",
+      "department": "מחלקה",
+      "lawyer": "עורך דין"
+    },
+    "status": {
+      "draft": "טיוטה",
+      "in_progress": "בתהליך",
+      "review": "בבדיקה",
+      "approved": "מאושר",
+      "exported": "יוצא",
+      "submitted": "הוגש"
+    }
   },
   "lawyers": {
     "title": "עורכי דין",
@@ -411,5 +427,69 @@
     "language": "שפה",
     "english": "אנגלית",
     "hebrew": "עברית"
+  },
+  "practiceAreas": {
+    "cooperative_associations": "אגודות שיתופיות",
+    "environmental": "איכות סביבה",
+    "insurance": "ביטוח",
+    "national_insurance": "ביטוח לאומי",
+    "blockchain_crypto": "בלוקצ'יין ומטבעות קריפטוגרפים",
+    "banking_finance": "בנקאות ומימון",
+    "legal_collection_enforcement": "גבייה משפטית והוצאה לפועל",
+    "mediation": "גישור",
+    "family_inheritance_mediation": "גישור דיני משפחה וירושה",
+    "internet_law": "דיני אינטרנט",
+    "family_inheritance_law": "דיני משפחה וירושה",
+    "tort_law": "דיני נזיקין",
+    "sports_law": "דיני ספורט",
+    "employment_law": "דיני עבודה",
+    "military_security_law": "דיני צבא ובטחון",
+    "immigration_citizenship": "הגירה ואזרחות",
+    "hitech": "הי-טק",
+    "urban_renewal": "התחדשות עירונית",
+    "franchising": "זכיינות",
+    "insolvency": "חדלות פירעון",
+    "commercial_litigation": "ליטיגציה מסחרית",
+    "private_clients_trusts_wealth": "לקוחות פרטיים, נאמנויות וניהול הון משפחתי",
+    "defamation": "לשון הרע",
+    "mergers_acquisitions": "מיזוגים ורכישות",
+    "project_finance_energy_infrastructure": "מימון פרויקטים, אנרגיה ותשתיות",
+    "municipal_taxation": "מיסוי מוניציפלי",
+    "taxes": "מיסים",
+    "hospitality": "מלונאות",
+    "nonprofits": "מלכ\"רים",
+    "international_trade": "מסחר בינלאומי",
+    "administrative_law": "משפט מנהלי",
+    "criminal_law": "משפט פלילי",
+    "real_estate": "נדל\"ן",
+    "cyber": "סייבר",
+    "white_collar": "צווארון לבן",
+    "ip_patent_prosecution": "קניין רוחני - Patent Prosecution",
+    "ip_litigation": "קניין רוחני - ליטיגציה",
+    "ip_commercial": "קניין רוחני - מסחרי",
+    "investment_funds": "קרנות השקעה",
+    "regulation": "רגולציה",
+    "local_authorities": "רשויות מקומיות",
+    "medical_malpractice": "רשלנות רפואית",
+    "capital_markets": "שוק ההון",
+    "class_actions": "תובענות ייצוגיות",
+    "transportation": "תחבורה",
+    "competition_antitrust": "תחרות והגבלים עסקיים",
+    "planning_construction": "תכנון ובניה",
+    "media_communications": "תקשורת"
+  },
+  "directories": {
+    "chambers": {
+      "name": "Chambers and Partners",
+      "description": "דירוגים משפטיים גלובליים עם מערכת רצועות (1-6)"
+    },
+    "legal_500": {
+      "name": "Legal 500",
+      "description": "דירוגים מסחריים עם מערכת שכבות"
+    },
+    "duns_100": {
+      "name": "דנ'ס 100",
+      "description": "דירוגי השוק המשפטי הישראלי"
+    }
   }
 }

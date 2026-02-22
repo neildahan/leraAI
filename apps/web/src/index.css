@@ -58,3 +58,12 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
+
+/* RTL support for Radix UI portals - align dropdown to end of trigger */
+[dir="rtl"] [data-radix-popper-content-wrapper] {
+  transform-origin: top right !important;
+}
+
+[dir="rtl"] [role="listbox"] {
+  text-align: right;
+}

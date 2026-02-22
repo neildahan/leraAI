@@ -6,6 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lera AI - Legal Directory Automation</title>
     <meta name="description" content="Enterprise-grade legal directory automation platform" />
+    <script>
+      // Set direction immediately based on saved language preference (before React loads)
+      (function() {
+        var lang = localStorage.getItem('i18nextLng') || 'en';
+        // Handle cases like 'he-IL' or 'en-US'
+        if (lang.startsWith('he')) {
+          document.documentElement.dir = 'rtl';
+          document.documentElement.lang = 'he';
+        } else {
+          document.documentElement.dir = 'ltr';
+          document.documentElement.lang = lang.split('-')[0];
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

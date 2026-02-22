@@ -16,33 +16,7 @@ import { api } from '@/services/api';
 import { cn, formatDate, formatCurrency } from '@/lib/utils';
 import { exportSubmissionToWord } from '@/lib/export-document';
 import { useToast } from '@/hooks/use-toast';
-
-const PRACTICE_AREAS = [
-  'Corporate/M&A',
-  'Banking & Finance',
-  'Capital Markets',
-  'Private Equity',
-  'Venture Capital',
-  'Commercial Litigation',
-  'Dispute Resolution',
-  'Arbitration',
-  'Real Estate',
-  'Construction',
-  'Employment',
-  'Tax',
-  'Intellectual Property',
-  'Technology',
-  'Data Privacy',
-  'Restructuring & Insolvency',
-  'Competition/Antitrust',
-  'Regulatory',
-  'Energy & Infrastructure',
-  'Healthcare & Life Sciences',
-  'Media & Entertainment',
-  'White Collar Crime',
-  'Family Law',
-  'Trusts & Estates',
-];
+import { PRACTICE_AREA_KEYS } from '@/lib/constants';
 
 interface Matter {
   _id: string;
@@ -77,6 +51,28 @@ interface Submission {
   matterIds: SubmissionMatter[];
   createdAt: string;
   submissionDeadline?: string;
+  // Firm details for export
+  firmNameHebrew?: string;
+  firmNameEnglish?: string;
+  companyId?: string;
+  responsiblePartner?: string;
+  partnerSeniority?: string;
+  partnerBio?: string;
+  // Lawyer changes
+  partnersJoined?: string[];
+  partnersLeft?: string[];
+  lawyersJoined?: string[];
+  lawyersLeft?: string[];
+}
+
+interface ApiLawyer {
+  _id: string;
+  firstName: string;
+  lastName: string;
+  level: string;
+  practiceAreas: string[];
+  admissionYear?: number;
+  bio?: string;
 }
 
 const statusColors: Record<string, string> = {
@@ -116,68 +112,201 @@ export function SubmissionsPage() {
       const response = await api.get<Submission[]>('/submissions');
       setSubmissions(response.data);
     } catch {
-      // Mock data for demo
+      // Mock data for demo - realistic Israeli law firm submissions
       setSubmissions([
         {
           _id: '1',
-          title: 'Chambers 2024 - Corporate/M&A',
+          title: "Dun's 100 2026 - היי-טק",
           rankingType: 'department',
-          targetDirectories: ['chambers'],
+          targetDirectories: ['duns_100'],
           status: 'in_progress',
-          year: 2024,
-          departmentName: 'Corporate/M&A',
+          year: 2026,
+          departmentName: 'high_tech',
+          firmNameHebrew: 'כהן לוי ושות\' עורכי דין',
+          firmNameEnglish: 'Cohen Levi & Co. Law Offices',
+          companyId: '51-456789-3',
+          responsiblePartner: 'מיכל לוי',
+          partnerSeniority: '18 שנים',
+          partnerBio: 'מיכל לוי היא שותפה בכירה וראש מחלקת ההיי-טק במשרד. מומחית בעסקאות M&A, גיוסי הון ויציאות (exits) של חברות טכנולוגיה. בוגרת משפטים מהאוניברסיטה העברית ו-LLM מאוניברסיטת הרווארד. בעשור האחרון ליוותה יותר מ-50 עסקאות בהיקף כולל של מעל 5 מיליארד דולר.',
+          partnersJoined: ['עמית גולדשטיין'],
+          partnersLeft: [],
+          lawyersJoined: ['אלון ברקוביץ', 'שירה מזרחי'],
+          lawyersLeft: ['יעל כהן'],
           matterIds: [
             {
               _id: 'm1',
-              title: 'Acme Corp Acquisition of Beta Inc',
-              clientName: 'Acme Corporation',
-              serviceDescription: 'Represented Acme Corporation in its $150M acquisition of Beta Inc, a leading technology company. The transaction involved complex cross-border regulatory approvals and innovative deal structuring.',
+              title: 'רכישת מודולר מערכות ע"י אינטל',
+              clientName: 'Intel Corporation',
+              serviceDescription: 'ייצוג אינטל ברכישת חברת הסטארטאפ הישראלית מודולר מערכות בעסקה בשווי 450 מיליון דולר. העסקה כללה בדיקת נאותות מקיפה, משא ומתן על הסכמי רכישה מורכבים, וטיפול באישורים רגולטוריים מול רשות ההגבלים העסקיים.',
               opposingCounsel: [
-                { firmName: 'Herzog Fox & Neeman', representedParty: 'Beta Inc', practiceArea: 'Corporate/M&A' }
-              ]
+                { firmName: 'הרצוג פוקס נאמן', representedParty: 'מודולר מערכות', practiceArea: 'corporate' },
+              ],
             },
             {
               _id: 'm2',
-              title: 'Gamma Holdings Restructuring',
-              clientName: 'Gamma Holdings Ltd',
-              serviceDescription: 'Led the restructuring of Gamma Holdings, coordinating with multiple stakeholders including bondholders and senior lenders to achieve a successful outcome.',
-            }
+              title: 'סבב גיוס C של פינטק סולושנס',
+              clientName: 'FinTech Solutions Ltd',
+              serviceDescription: 'ייצוג חברת הפינטק הישראלית בסבב גיוס Series C בהיקף 120 מיליון דולר בהובלת סקויה קפיטל. העסקה כללה משא ומתן על תנאי ההשקעה, זכויות אנטי-דילול, והרכב דירקטוריון.',
+              opposingCounsel: [
+                { firmName: 'Fenwick & West', representedParty: 'Sequoia Capital', practiceArea: 'venture_capital' },
+              ],
+            },
+            {
+              _id: 'm3',
+              title: 'Exit של סייבר סטארט לפאלו אלטו',
+              clientName: 'CyberStart Ltd',
+              serviceDescription: 'ייצוג מייסדי חברת הסייבר הישראלית במכירה לפאלו אלטו נטוורקס בעסקה בשווי 350 מיליון דולר. העסקה כללה מנגנוני earn-out מורכבים והתחייבויות נושאי משרה.',
+              opposingCounsel: [
+                { firmName: 'Wilson Sonsini', representedParty: 'Palo Alto Networks', practiceArea: 'high_tech' },
+              ],
+            },
           ],
-          createdAt: '2024-01-15T10:00:00Z',
-          submissionDeadline: '2024-02-15T23:59:59Z',
+          createdAt: '2026-01-15T10:00:00Z',
+          submissionDeadline: '2026-11-10T23:59:59Z',
         },
         {
           _id: '2',
-          title: "Dun's 100 2024 - Sarah Cohen",
-          rankingType: 'lawyer',
+          title: "Dun's 100 2026 - נדל\"ן",
+          rankingType: 'department',
           targetDirectories: ['duns_100'],
           status: 'review',
-          year: 2024,
+          year: 2026,
+          departmentName: 'real_estate',
+          firmNameHebrew: 'כהן לוי ושות\' עורכי דין',
+          firmNameEnglish: 'Cohen Levi & Co. Law Offices',
+          companyId: '51-456789-3',
+          responsiblePartner: 'רונית אברהם',
+          partnerSeniority: '15 שנים',
+          partnerBio: 'רונית אברהם היא שותפה וראש מחלקת הנדל"ן במשרד. מתמחה בפרויקטים של התחדשות עירונית, עסקאות נדל"ן מסחרי ומגורים, וליווי יזמים מובילים בישראל. בוגרת משפטים מאוניברסיטת תל אביב.',
+          partnersJoined: [],
+          partnersLeft: [],
+          lawyersJoined: ['דני ישראלי'],
+          lawyersLeft: [],
           matterIds: [
             {
-              _id: 'm3',
-              title: 'Delta Industries IPO',
-              clientName: 'Delta Industries',
-              serviceDescription: 'Advised Delta Industries on its landmark $500M IPO on the Tel Aviv Stock Exchange, one of the largest tech IPOs of the year.',
-            },
-            {
               _id: 'm4',
-              title: 'TechStart Series B Financing',
-              clientName: 'TechStart Ltd',
-              serviceDescription: 'Represented TechStart in its $30M Series B financing round led by major international venture capital firms.',
-            }
+              title: 'פרויקט מגורים "פארק הים" הרצליה',
+              clientName: 'אזורים קבוצת השקעות',
+              serviceDescription: 'ליווי משפטי מקיף לפרויקט פינוי-בינוי בהיקף 2 מיליארד ש"ח בהרצליה הכולל 800 יחידות דיור. כולל הסכמים עם דיירים, הסדרי מימון, וטיפול בהיבטי תכנון ובנייה.',
+            },
           ],
-          createdAt: '2024-01-10T14:30:00Z',
+          createdAt: '2026-01-10T14:30:00Z',
+          submissionDeadline: '2026-11-10T23:59:59Z',
         },
         {
           _id: '3',
-          title: 'Legal 500 2024 - Firm Submission',
-          rankingType: 'firm',
+          title: 'Chambers 2026 - Corporate/M&A',
+          rankingType: 'department',
+          targetDirectories: ['chambers'],
+          status: 'in_progress',
+          year: 2026,
+          departmentName: 'corporate',
+          matterIds: [
+            {
+              _id: 'm5',
+              title: 'רכישת מודולר מערכות ע"י אינטל',
+              clientName: 'Intel Corporation',
+              serviceDescription: 'Represented Intel in the $450M acquisition of Israeli startup Modular Systems. The transaction involved comprehensive due diligence, complex negotiation of acquisition agreements, and regulatory approvals from the Antitrust Authority.',
+              opposingCounsel: [
+                { firmName: 'Herzog Fox & Neeman', representedParty: 'Modular Systems', practiceArea: 'corporate' },
+              ],
+            },
+            {
+              _id: 'm6',
+              title: 'מיזוג בנקים דיגיטליים',
+              clientName: 'One Digital Bank',
+              serviceDescription: 'Advised One Digital Bank on its merger with PayBank to create Israel\'s largest digital bank. The deal required Bank of Israel approval and handling of complex regulatory issues.',
+              opposingCounsel: [
+                { firmName: 'Meitar Liquornik', representedParty: 'PayBank', practiceArea: 'banking' },
+              ],
+            },
+          ],
+          createdAt: '2026-01-20T09:00:00Z',
+          submissionDeadline: '2026-03-15T23:59:59Z',
+        },
+        {
+          _id: '4',
+          title: 'Legal 500 2026 - TMT',
+          rankingType: 'department',
           targetDirectories: ['legal_500'],
           status: 'draft',
-          year: 2024,
-          matterIds: [],
-          createdAt: '2024-01-20T09:00:00Z',
+          year: 2026,
+          departmentName: 'high_tech',
+          matterIds: [
+            {
+              _id: 'm7',
+              title: 'Exit של סייבר סטארט לפאלו אלטו',
+              clientName: 'CyberStart Ltd',
+              serviceDescription: 'Represented the founders of Israeli cybersecurity company in $350M sale to Palo Alto Networks. The deal included complex earn-out mechanisms and officer undertakings.',
+              opposingCounsel: [
+                { firmName: 'Wilson Sonsini', representedParty: 'Palo Alto Networks', practiceArea: 'high_tech' },
+              ],
+            },
+          ],
+          createdAt: '2026-02-01T11:00:00Z',
+          submissionDeadline: '2026-04-30T23:59:59Z',
+        },
+        {
+          _id: '5',
+          title: "Dun's 100 2026 - ליטיגציה",
+          rankingType: 'department',
+          targetDirectories: ['duns_100'],
+          status: 'approved',
+          year: 2026,
+          departmentName: 'litigation',
+          firmNameHebrew: 'כהן לוי ושות\' עורכי דין',
+          firmNameEnglish: 'Cohen Levi & Co. Law Offices',
+          companyId: '51-456789-3',
+          responsiblePartner: 'דוד שמעוני',
+          partnerSeniority: '20 שנים',
+          partnerBio: 'דוד שמעוני הוא שותף בכיר וראש מחלקת הליטיגציה. מומחה בליטיגציה מסחרית מורכבת, בוררויות בינלאומיות והגבלים עסקיים. בעל ניסיון של שני עשורים בניהול תיקים בעלי משמעות ציבורית.',
+          partnersJoined: [],
+          partnersLeft: [],
+          lawyersJoined: [],
+          lawyersLeft: [],
+          matterIds: [
+            {
+              _id: 'm8',
+              title: 'תביעה ייצוגית נגד תשתיות טלקום',
+              clientName: 'תשתיות טלקום ישראל בע"מ',
+              serviceDescription: 'הגנה מוצלחת על חברת תקשורת מובילה בתביעה ייצוגית בסך 500 מיליון ש"ח בגין טענות לגביה יתר. התיק הסתיים בפשרה של 15 מיליון ש"ח בלבד.',
+              opposingCounsel: [
+                { firmName: 'בן ארי פיש סבן', representedParty: 'קבוצת התובעים', practiceArea: 'litigation' },
+              ],
+            },
+          ],
+          createdAt: '2025-12-01T10:00:00Z',
+          submissionDeadline: '2026-11-10T23:59:59Z',
+        },
+        {
+          _id: '6',
+          title: "Dun's 100 2026 - מיכל לוי",
+          rankingType: 'lawyer',
+          targetDirectories: ['duns_100'],
+          status: 'in_progress',
+          year: 2026,
+          firmNameHebrew: 'כהן לוי ושות\' עורכי דין',
+          firmNameEnglish: 'Cohen Levi & Co. Law Offices',
+          companyId: '51-456789-3',
+          responsiblePartner: 'מיכל לוי',
+          partnerSeniority: '18 שנים',
+          partnerBio: 'מיכל לוי היא שותפה בכירה וראש מחלקת ההיי-טק במשרד. מומחית בעסקאות M&A, גיוסי הון ויציאות (exits) של חברות טכנולוגיה. בוגרת משפטים מהאוניברסיטה העברית ו-LLM מאוניברסיטת הרווארד.',
+          matterIds: [
+            {
+              _id: 'm9',
+              title: 'רכישת מודולר מערכות ע"י אינטל',
+              clientName: 'Intel Corporation',
+              serviceDescription: 'ייצוג אינטל ברכישת מודולר מערכות - 450 מיליון דולר',
+            },
+            {
+              _id: 'm10',
+              title: 'Exit של סייבר סטארט לפאלו אלטו',
+              clientName: 'CyberStart Ltd',
+              serviceDescription: 'ייצוג מייסדי סייבר סטארט במכירה לפאלו אלטו - 350 מיליון דולר',
+            },
+          ],
+          createdAt: '2026-02-10T09:00:00Z',
+          submissionDeadline: '2026-11-10T23:59:59Z',
         },
       ]);
     } finally {
@@ -219,6 +348,16 @@ export function SubmissionsPage() {
       <SubmissionDetailView
         submission={selectedSubmission}
         onBack={() => setSelectedSubmission(null)}
+        onUpdate={async () => {
+          const response = await api.get<Submission[]>('/submissions').catch(() => null);
+          if (response?.data) {
+            setSubmissions(response.data);
+            const updated = response.data.find(s => s._id === selectedSubmission._id);
+            if (updated) {
+              setSelectedSubmission(updated);
+            }
+          }
+        }}
       />
     );
   }
@@ -338,7 +477,7 @@ export function SubmissionsPage() {
                       </div>
                       <Badge className={cn('gap-1', statusColors[submission.status])}>
                         {getStatusIcon(submission.status)}
-                        {submission.status.replace('_', ' ')}
+                        {t(`submissions.status.${submission.status}`)}
                       </Badge>
                       <ChevronRight className="h-5 w-5 text-muted-foreground rtl:rotate-180" />
                     </div>
@@ -487,11 +626,22 @@ function SubmissionWizard({ onClose }: WizardProps) {
   const handleCreate = async () => {
     setIsSubmitting(true);
     try {
+      // Map selected IDs to full matter objects for the submission
+      const selectedMatterObjects = selectedMatters.map(id => {
+        const matter = availableMatters.find(m => m._id === id);
+        return matter ? {
+          _id: matter._id,
+          title: matter.title,
+          clientName: matter.clientName,
+          practiceArea: matter.practiceArea,
+        } : { _id: id, title: t('submissions.unknownMatter') };
+      });
+
       await api.post('/submissions', {
         title: title || `${selectedDirectories.map(d => directoryLabels[d]).join(', ')} ${new Date().getFullYear()} - ${rankingType === 'department' ? departmentName : rankingType}`,
         rankingType,
         targetDirectories: selectedDirectories,
-        matterIds: selectedMatters,
+        matterIds: selectedMatterObjects,
         departmentName: rankingType === 'department' ? departmentName : undefined,
         year: new Date().getFullYear(),
       });
@@ -584,9 +734,9 @@ function SubmissionWizard({ onClose }: WizardProps) {
                       <SelectValue placeholder={t('submissions.selectPracticeArea')} />
                     </SelectTrigger>
                     <SelectContent>
-                      {PRACTICE_AREAS.map((area) => (
-                        <SelectItem key={area} value={area}>
-                          {area}
+                      {PRACTICE_AREA_KEYS.map((key) => (
+                        <SelectItem key={key} value={key}>
+                          {t(`practiceAreas.${key}`)}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -696,7 +846,7 @@ function SubmissionWizard({ onClose }: WizardProps) {
                               {matter.practiceArea && (
                                 <>
                                   <span>•</span>
-                                  <span>{matter.practiceArea}</span>
+                                  <span>{t(`practiceAreas.${matter.practiceArea}`, matter.practiceArea)}</span>
                                 </>
                               )}
                               {matter.dealValue && (
@@ -716,7 +866,7 @@ function SubmissionWizard({ onClose }: WizardProps) {
                               matter.status === 'draft' && 'border-gray-400 text-gray-500'
                             )}
                           >
-                            {matter.status}
+                            {t(`matters.status.${matter.status}`, matter.status)}
                           </Badge>
                         </div>
                       );
@@ -754,12 +904,12 @@ function SubmissionWizard({ onClose }: WizardProps) {
               <div className="rounded-lg border p-4 space-y-3">
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">{t('submissions.rankingType')}:</span>
-                  <span className="font-medium capitalize">{rankingType}</span>
+                  <span className="font-medium">{rankingType ? t(`submissions.rankingTypes.${rankingType}`) : ''}</span>
                 </div>
                 {rankingType === 'department' && (
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">{t('submissions.department')}:</span>
-                    <span className="font-medium">{departmentName || t('submissions.notSpecified')}</span>
+                    <span className="font-medium">{departmentName ? t(`practiceAreas.${departmentName}`, departmentName) : t('submissions.notSpecified')}</span>
                   </div>
                 )}
                 <div className="flex justify-between">
@@ -781,7 +931,7 @@ function SubmissionWizard({ onClose }: WizardProps) {
                   type="text"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  placeholder={`${selectedDirectories.map(d => directoryLabels[d]).join(', ')} ${new Date().getFullYear()} - ${rankingType === 'department' ? departmentName : rankingType}`}
+                  placeholder={`${selectedDirectories.map(d => directoryLabels[d]).join(', ')} ${new Date().getFullYear()} - ${rankingType === 'department' ? t(`practiceAreas.${departmentName}`, departmentName) : rankingType ? t(`submissions.rankingTypes.${rankingType}`) : ''}`}
                   className="mt-1 w-full rounded-md border px-3 py-2"
                 />
               </div>
@@ -815,20 +965,210 @@ function SubmissionWizard({ onClose }: WizardProps) {
 interface DetailViewProps {
   submission: Submission;
   onBack: () => void;
+  onUpdate?: () => void;
 }
 
-function SubmissionDetailView({ submission, onBack }: DetailViewProps) {
+interface MatterDetails {
+  _id: string;
+  title: string;
+  clientName?: string;
+  practiceArea?: string;
+  serviceDescription?: string;
+}
+
+function SubmissionDetailView({ submission, onBack, onUpdate }: DetailViewProps) {
   const { t } = useTranslation();
   const { toast } = useToast();
   const [isExporting, setIsExporting] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedContent, setGeneratedContent] = useState<string | null>(null);
+  const [matterDetails, setMatterDetails] = useState<Map<string, MatterDetails>>(new Map());
+  const [isLoadingMatters, setIsLoadingMatters] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editTitle, setEditTitle] = useState(submission.title);
+  const [editDepartment, setEditDepartment] = useState(submission.departmentName || '');
+  const [isSaving, setIsSaving] = useState(false);
   const RankingIcon = rankingTypeIcons[submission.rankingType];
+
+  const handleSaveEdit = async () => {
+    setIsSaving(true);
+    try {
+      await api.put(`/submissions/${submission._id}`, {
+        title: editTitle,
+        departmentName: editDepartment || undefined,
+      });
+      toast({ title: t('common.success'), description: t('submissions.submissionUpdated') });
+      setIsEditing(false);
+      onUpdate?.();
+    } catch {
+      toast({ variant: 'destructive', title: t('common.error'), description: t('submissions.failedToUpdateSubmission') });
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const handleCancelEdit = () => {
+    setEditTitle(submission.title);
+    setEditDepartment(submission.departmentName || '');
+    setIsEditing(false);
+  };
+
+  // Fetch matter details for IDs that aren't already populated
+  useEffect(() => {
+    const fetchMatterDetails = async () => {
+      // Check if we have any matter IDs that are just strings (not populated)
+      const matterIdsToFetch = submission.matterIds
+        .filter(m => typeof m === 'string' || !m.title)
+        .map(m => typeof m === 'string' ? m : m._id);
+
+      if (matterIdsToFetch.length === 0) return;
+
+      setIsLoadingMatters(true);
+      try {
+        const response = await api.get<{ matters: MatterDetails[] }>('/matters');
+        const mattersMap = new Map<string, MatterDetails>();
+        (response.data.matters || []).forEach(m => mattersMap.set(m._id, m));
+        setMatterDetails(mattersMap);
+      } catch {
+        // Use mock data as fallback
+        const mockMatters: MatterDetails[] = [
+          { _id: '1', title: 'Acme Corp Acquisition of Beta Inc', clientName: 'Acme Corporation', practiceArea: 'Corporate/M&A' },
+          { _id: '2', title: 'Gamma Holdings Restructuring', clientName: 'Gamma Holdings Ltd', practiceArea: 'Restructuring & Insolvency' },
+          { _id: '3', title: 'Delta Industries IPO', clientName: 'Delta Industries', practiceArea: 'Capital Markets' },
+          { _id: '4', title: 'Epsilon Capital Fund Formation', clientName: 'Epsilon Capital', practiceArea: 'Private Equity' },
+          { _id: '5', title: 'TechStart Series B Financing', clientName: 'TechStart Ltd', practiceArea: 'Venture Capital' },
+        ];
+        const mattersMap = new Map<string, MatterDetails>();
+        mockMatters.forEach(m => mattersMap.set(m._id, m));
+        setMatterDetails(mattersMap);
+      } finally {
+        setIsLoadingMatters(false);
+      }
+    };
+
+    fetchMatterDetails();
+  }, [submission.matterIds]);
+
+  // Helper to get matter display data
+  const getMatterData = (matter: SubmissionMatter | string): MatterDetails => {
+    if (typeof matter === 'string') {
+      // It's just an ID, look up in fetched details
+      return matterDetails.get(matter) || { _id: matter, title: t('submissions.unknownMatter') };
+    }
+    if (!matter.title) {
+      // Object without title, look up by ID
+      return matterDetails.get(matter._id) || { _id: matter._id, title: t('submissions.unknownMatter') };
+    }
+    // Already has full data
+    return matter;
+  };
 
   const handleExport = async () => {
     setIsExporting(true);
     try {
-      await exportSubmissionToWord(submission);
+      // Fetch lawyers by practice area if available
+      let teamLawyers: Array<{
+        firstName: string;
+        lastName: string;
+        position?: string;
+        yearsOfExperience?: number;
+        practiceAreas?: string[];
+        isResponsiblePartner?: boolean;
+      }> = [];
+
+      if (submission.departmentName) {
+        try {
+          const response = await api.get<ApiLawyer[]>(`/lawyers/by-practice-area/${submission.departmentName}`);
+          const currentYear = new Date().getFullYear();
+          teamLawyers = (response.data || []).map(lawyer => ({
+            firstName: lawyer.firstName,
+            lastName: lawyer.lastName,
+            position: lawyer.level,
+            yearsOfExperience: lawyer.admissionYear ? currentYear - lawyer.admissionYear : undefined,
+            practiceAreas: lawyer.practiceAreas,
+            isResponsiblePartner: lawyer.level === 'managing_partner' || lawyer.level === 'senior_partner',
+          }));
+        } catch {
+          // If API fails, continue with empty lawyers
+          console.log('Could not fetch lawyers for practice area');
+        }
+      }
+
+      // Fetch full matter details from API
+      let fullMatters: Array<{
+        _id: string;
+        title: string;
+        clientName?: string;
+        serviceDescription?: string;
+        dealValue?: { amount: number; currency: string };
+        status?: string;
+        opposingCounsel?: Array<{
+          firmName: string;
+          representedParty: string;
+          practiceArea?: string;
+        }>;
+      }> = [];
+
+      try {
+        const mattersResponse = await api.get<{ matters: typeof fullMatters }>('/matters');
+        const allMatters = mattersResponse.data.matters || [];
+        // Get the IDs from submission.matterIds
+        const matterIds = submission.matterIds.map(m => typeof m === 'string' ? m : m._id);
+        // Filter and merge with existing data
+        fullMatters = matterIds.map(id => {
+          const apiMatter = allMatters.find(m => m._id === id);
+          const submissionMatter = submission.matterIds.find(m => (typeof m === 'string' ? m : m._id) === id);
+          // Merge: prefer API data, fall back to submission data
+          if (apiMatter) {
+            return {
+              ...apiMatter,
+              // Keep submission-specific overrides if they exist
+              serviceDescription: (typeof submissionMatter !== 'string' && submissionMatter?.serviceDescription) || apiMatter.serviceDescription,
+              opposingCounsel: (typeof submissionMatter !== 'string' && submissionMatter?.opposingCounsel) || apiMatter.opposingCounsel,
+            };
+          }
+          // Fall back to submission matter data
+          if (typeof submissionMatter !== 'string') {
+            return submissionMatter as typeof fullMatters[0];
+          }
+          return { _id: id, title: 'Unknown Matter' };
+        });
+      } catch {
+        // If API fails, use submission matter data directly
+        console.log('Could not fetch matters from API, using submission data');
+        fullMatters = submission.matterIds.map(m => {
+          if (typeof m === 'string') {
+            return { _id: m, title: 'Unknown Matter' };
+          }
+          return m as typeof fullMatters[0];
+        });
+      }
+
+      // Build firm details from submission
+      const firmDetails = {
+        firmNameHebrew: submission.firmNameHebrew,
+        firmNameEnglish: submission.firmNameEnglish,
+        companyId: submission.companyId,
+        responsiblePartner: submission.responsiblePartner,
+        partnerSeniority: submission.partnerSeniority,
+        partnerBio: submission.partnerBio,
+      };
+
+      // Build lawyer changes from submission
+      const lawyerChanges = {
+        partnersJoined: submission.partnersJoined,
+        partnersLeft: submission.partnersLeft,
+        lawyersJoined: submission.lawyersJoined,
+        lawyersLeft: submission.lawyersLeft,
+      };
+
+      // Create a modified submission with full matter data
+      const submissionWithMatters = {
+        ...submission,
+        matterIds: fullMatters,
+      };
+
+      await exportSubmissionToWord(submissionWithMatters as any, firmDetails, teamLawyers, lawyerChanges);
       toast({ title: t('submissions.exportComplete'), description: t('submissions.documentDownloadedSuccessfully') });
     } catch (error) {
       console.error('Export error:', error);
@@ -893,14 +1233,22 @@ function SubmissionDetailView({ submission, onBack }: DetailViewProps) {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon" onClick={onBack}>
+          <Button variant="ghost" size="icon" onClick={isEditing ? handleCancelEdit : onBack}>
             <ArrowLeft className="h-5 w-5 rtl:rotate-180" />
           </Button>
-          <div>
-            <h1 className="text-2xl font-bold tracking-tight">{submission.title}</h1>
+          <div className="flex-1">
+            {isEditing ? (
+              <Input
+                value={editTitle}
+                onChange={(e) => setEditTitle(e.target.value)}
+                className="text-2xl font-bold h-auto py-1"
+              />
+            ) : (
+              <h1 className="text-2xl font-bold tracking-tight">{submission.title}</h1>
+            )}
             <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
               <RankingIcon className="h-4 w-4" />
-              <span className="capitalize">{submission.rankingType} {t('common.ranking')}</span>
+              <span>{t(`submissions.rankingTypes.${submission.rankingType}`)} {t('common.ranking')}</span>
               <span>•</span>
               <span>{submission.year}</span>
               {submission.submissionDeadline && (
@@ -913,21 +1261,34 @@ function SubmissionDetailView({ submission, onBack }: DetailViewProps) {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="outline" onClick={handleExport} disabled={isExporting}>
-            <Download className="me-2 h-4 w-4" />
-            {isExporting ? t('submissions.exporting') : t('common.export')}
-          </Button>
-          <Button variant="outline">
-            <Edit className="me-2 h-4 w-4" />
-            {t('common.edit')}
-          </Button>
+          {isEditing ? (
+            <>
+              <Button variant="outline" onClick={handleCancelEdit} disabled={isSaving}>
+                {t('common.cancel')}
+              </Button>
+              <Button onClick={handleSaveEdit} disabled={isSaving}>
+                {isSaving ? t('common.saving') : t('common.save')}
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button variant="outline" onClick={handleExport} disabled={isExporting}>
+                <Download className="me-2 h-4 w-4" />
+                {isExporting ? t('submissions.exporting') : t('common.export')}
+              </Button>
+              <Button variant="outline" onClick={() => setIsEditing(true)}>
+                <Edit className="me-2 h-4 w-4" />
+                {t('common.edit')}
+              </Button>
+            </>
+          )}
         </div>
       </div>
 
       {/* Status and Directories */}
       <div className="flex items-center gap-3">
         <Badge className={cn('gap-1', statusColors[submission.status])}>
-          {submission.status.replace('_', ' ')}
+          {t(`submissions.status.${submission.status}`)}
         </Badge>
         {submission.targetDirectories.map((dir) => (
           <Badge key={dir} variant="outline">
@@ -949,16 +1310,31 @@ function SubmissionDetailView({ submission, onBack }: DetailViewProps) {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <p className="text-sm text-muted-foreground">{t('submissions.rankingType')}</p>
-                  <p className="font-medium capitalize">{submission.rankingType}</p>
+                  <p className="font-medium">{t(`submissions.rankingTypes.${submission.rankingType}`)}</p>
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">{t('common.year')}</p>
                   <p className="font-medium">{submission.year}</p>
                 </div>
-                {submission.departmentName && (
+                {(submission.departmentName || isEditing) && submission.rankingType === 'department' && (
                   <div>
                     <p className="text-sm text-muted-foreground">{t('submissions.department')}</p>
-                    <p className="font-medium">{submission.departmentName}</p>
+                    {isEditing ? (
+                      <Select value={editDepartment} onValueChange={setEditDepartment}>
+                        <SelectTrigger className="w-full mt-1">
+                          <SelectValue placeholder={t('submissions.selectPracticeArea')} />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {PRACTICE_AREA_KEYS.map((key) => (
+                            <SelectItem key={key} value={key}>
+                              {t(`practiceAreas.${key}`)}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    ) : (
+                      <p className="font-medium">{t(`practiceAreas.${submission.departmentName}`, submission.departmentName || '')}</p>
+                    )}
                   </div>
                 )}
                 <div>
@@ -985,36 +1361,44 @@ function SubmissionDetailView({ submission, onBack }: DetailViewProps) {
                     {t('submissions.addMatters')}
                   </Button>
                 </div>
+              ) : isLoadingMatters ? (
+                <div className="flex items-center justify-center py-8">
+                  <div className="h-6 w-6 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+                </div>
               ) : (
                 <div className="space-y-3">
-                  {submission.matterIds.map((matter, index) => (
-                    <div
-                      key={matter._id || index}
-                      className="rounded-lg border p-3"
-                    >
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-sm font-medium">
-                            {index + 1}
+                  {submission.matterIds.map((matter, index) => {
+                    const matterData = getMatterData(matter);
+
+                    return (
+                      <div
+                        key={matterData._id || index}
+                        className="rounded-lg border p-3"
+                      >
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-sm font-medium">
+                              {index + 1}
+                            </div>
+                            <div>
+                              <p className="font-medium">{matterData.title}</p>
+                              {matterData.clientName && (
+                                <p className="text-sm text-muted-foreground">{matterData.clientName}</p>
+                              )}
+                            </div>
                           </div>
-                          <div>
-                            <p className="font-medium">{matter.title}</p>
-                            {matter.clientName && (
-                              <p className="text-sm text-muted-foreground">{matter.clientName}</p>
-                            )}
-                          </div>
+                          <Button variant="ghost" size="icon">
+                            <Trash2 className="h-4 w-4 text-muted-foreground" />
+                          </Button>
                         </div>
-                        <Button variant="ghost" size="icon">
-                          <Trash2 className="h-4 w-4 text-muted-foreground" />
-                        </Button>
+                        {matterData.serviceDescription && (
+                          <p className="mt-2 text-sm text-muted-foreground line-clamp-2 ms-11">
+                            {matterData.serviceDescription}
+                          </p>
+                        )}
                       </div>
-                      {matter.serviceDescription && (
-                        <p className="mt-2 text-sm text-muted-foreground line-clamp-2 ml-11">
-                          {matter.serviceDescription}
-                        </p>
-                      )}
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               )}
             </CardContent>

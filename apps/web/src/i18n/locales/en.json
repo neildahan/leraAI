@@ -229,6 +229,8 @@
     "submissionCreated": "Submission created",
     "submissionCreatedDescription": "Your submission has been created successfully",
     "failedToCreateSubmission": "Failed to create submission",
+    "submissionUpdated": "Submission updated successfully",
+    "failedToUpdateSubmission": "Failed to update submission",
     "pleaseSelectRankingType": "Please select a ranking type",
     "pleaseSelectPracticeArea": "Please select a practice area",
     "pleaseSelectAtLeastOneDirectory": "Please select at least one directory",
@@ -239,6 +241,7 @@
     "selectedMatters": "Selected Matters",
     "keyMattersIncluded": "Key matters included in this submission",
     "noMattersSelectedYet": "No matters selected yet",
+    "unknownMatter": "Unknown Matter",
     "addMatters": "Add Matters",
     "generatedContentPreview": "Generated Content Preview",
     "aiGeneratedContent": "AI-generated content for directory submission",
@@ -270,7 +273,20 @@
     "pleaseAddMattersBeforeGenerating": "Please add matters before generating content",
     "servicesProvided": "Services Provided",
     "otherLawFirmsInvolved": "Other Law Firms Involved",
-    "representing": "representing"
+    "representing": "representing",
+    "rankingTypes": {
+      "firm": "Firm",
+      "department": "Department",
+      "lawyer": "Lawyer"
+    },
+    "status": {
+      "draft": "Draft",
+      "in_progress": "In Progress",
+      "review": "In Review",
+      "approved": "Approved",
+      "exported": "Exported",
+      "submitted": "Submitted"
+    }
   },
   "lawyers": {
     "title": "Lawyers",
@@ -411,5 +427,69 @@
     "language": "Language",
     "english": "English",
     "hebrew": "Hebrew"
+  },
+  "practiceAreas": {
+    "cooperative_associations": "Cooperative Associations",
+    "environmental": "Environmental",
+    "insurance": "Insurance",
+    "national_insurance": "National Insurance",
+    "blockchain_crypto": "Blockchain & Cryptocurrencies",
+    "banking_finance": "Banking & Finance",
+    "legal_collection_enforcement": "Legal Collection & Enforcement",
+    "mediation": "Mediation",
+    "family_inheritance_mediation": "Family & Inheritance Mediation",
+    "internet_law": "Internet Law",
+    "family_inheritance_law": "Family & Inheritance Law",
+    "tort_law": "Tort Law",
+    "sports_law": "Sports Law",
+    "employment_law": "Employment Law",
+    "military_security_law": "Military & Security Law",
+    "immigration_citizenship": "Immigration & Citizenship",
+    "hitech": "Hi-Tech",
+    "urban_renewal": "Urban Renewal",
+    "franchising": "Franchising",
+    "insolvency": "Insolvency",
+    "commercial_litigation": "Commercial Litigation",
+    "private_clients_trusts_wealth": "Private Clients, Trusts & Family Wealth",
+    "defamation": "Defamation",
+    "mergers_acquisitions": "Mergers & Acquisitions",
+    "project_finance_energy_infrastructure": "Project Finance, Energy & Infrastructure",
+    "municipal_taxation": "Municipal Taxation",
+    "taxes": "Taxes",
+    "hospitality": "Hospitality",
+    "nonprofits": "Non-Profits",
+    "international_trade": "International Trade",
+    "administrative_law": "Administrative Law",
+    "criminal_law": "Criminal Law",
+    "real_estate": "Real Estate",
+    "cyber": "Cyber",
+    "white_collar": "White Collar",
+    "ip_patent_prosecution": "Intellectual Property - Patent Prosecution",
+    "ip_litigation": "Intellectual Property - Litigation",
+    "ip_commercial": "Intellectual Property - Commercial",
+    "investment_funds": "Investment Funds",
+    "regulation": "Regulation",
+    "local_authorities": "Local Authorities",
+    "medical_malpractice": "Medical Malpractice",
+    "capital_markets": "Capital Markets",
+    "class_actions": "Class Actions",
+    "transportation": "Transportation",
+    "competition_antitrust": "Competition & Antitrust",
+    "planning_construction": "Planning & Construction",
+    "media_communications": "Media & Communications"
+  },
+  "directories": {
+    "chambers": {
+      "name": "Chambers and Partners",
+      "description": "Global legal rankings with band system (1-6)"
+    },
+    "legal_500": {
+      "name": "Legal 500",
+      "description": "Commercial-focused rankings with tier system"
+    },
+    "duns_100": {
+      "name": "Dun's 100",
+      "description": "Israeli legal market rankings"
+    }
   }
 }

@@ -16,11 +16,9 @@ const languages = [
 export function LanguageSwitcher() {
   const { i18n } = useTranslation();
 
+  // Direction is automatically updated by i18n event listener in i18n/index.ts
   const changeLanguage = (languageCode: string) => {
     i18n.changeLanguage(languageCode);
-    // Update document direction for RTL support
-    document.documentElement.dir = languageCode === 'he' ? 'rtl' : 'ltr';
-    document.documentElement.lang = languageCode;
   };
 
   return (

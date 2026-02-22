@@ -35,8 +35,8 @@ export class SubmissionsService {
 
     return this.submissionModel
       .find(query)
-      .populate('matterIds', 'title clientName dealValue status')
-      .populate('refereeIds', 'firstName lastName company')
+      .populate('matterIds', 'title clientName dealValue status serviceDescription opposingCounsel practiceArea completionDate')
+      .populate('refereeIds', 'firstName lastName company title email')
       .populate('targetLawyerId', 'firstName lastName title')
       .populate('createdBy', 'firstName lastName')
       .sort({ createdAt: -1 })

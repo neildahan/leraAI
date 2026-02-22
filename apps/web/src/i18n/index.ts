@@ -10,6 +10,13 @@ const resources = {
   he: { translation: he },
 };
 
+// Function to update document direction based on language
+const updateDocumentDirection = (language: string) => {
+  const isRTL = language === 'he';
+  document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
+  document.documentElement.lang = language;
+};
+
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
@@ -22,8 +29,18 @@ i18n
     detection: {
       order: ['localStorage', 'navigator', 'htmlTag'],
       caches: ['localStorage'],
+      lookupLocalStorage: 'i18nextLng',
     },
+  })
+  .then(() => {
+    // Set direction on initial load
+    updateDocumentDirection(i18n.language);
   });
+
+// Listen for language changes and update direction
+i18n.on('languageChanged', (language) => {
+  updateDocumentDirection(language);
+});
 
 export default i18n;
 

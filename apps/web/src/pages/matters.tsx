@@ -25,6 +25,7 @@ import { Label } from '@/components/ui/label';
 import { api } from '@/services/api';
 import { cn, formatCurrency, formatDate } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
+import { PRACTICE_AREA_KEYS, CURRENCIES } from '@/lib/constants';
 
 // Opposing counsel - other law firms involved
 interface OpposingCounsel {
@@ -64,34 +65,7 @@ interface MatterFormData {
   notes: string;
 }
 
-const PRACTICE_AREAS = [
-  'Corporate/M&A',
-  'Banking & Finance',
-  'Capital Markets',
-  'Private Equity',
-  'Venture Capital',
-  'Commercial Litigation',
-  'Dispute Resolution',
-  'Arbitration',
-  'Real Estate',
-  'Construction',
-  'Employment',
-  'Tax',
-  'Intellectual Property',
-  'Technology',
-  'Data Privacy',
-  'Restructuring & Insolvency',
-  'Competition/Antitrust',
-  'Regulatory',
-  'Energy & Infrastructure',
-  'Healthcare & Life Sciences',
-  'Media & Entertainment',
-  'White Collar Crime',
-  'Family Law',
-  'Trusts & Estates',
-];
-
-const CURRENCIES = ['USD', 'EUR', 'GBP', 'ILS', 'CHF', 'JPY'];
+// PRACTICE_AREA_KEYS and CURRENCIES are imported from @/lib/constants
 
 const statusConfig = {
   draft: { labelKey: 'matters.status.draft', className: 'bg-gray-100 text-gray-700' },
@@ -140,52 +114,159 @@ export function MattersPage() {
       const response = await api.get<{ matters: Matter[] }>('/matters');
       setMatters(response.data.matters || []);
     } catch {
-      // Mock data for demo
+      // Mock data for demo - realistic Israeli legal market transactions
       setMatters([
         {
           _id: '1',
-          title: 'Acme Corp Acquisition of Beta Inc',
-          clientName: 'Acme Corporation',
-          counterparties: ['Beta Inc', 'Beta Shareholders'],
-          practiceArea: 'Corporate/M&A',
+          title: 'רכישת מודולר מערכות ע"י אינטל',
+          clientName: 'Intel Corporation',
+          counterparties: ['מודולר מערכות בע"מ', 'בעלי מניות מודולר'],
+          opposingCounsel: [
+            { firmName: 'הרצוג פוקס נאמן', representedParty: 'מודולר מערכות', practiceArea: 'corporate' },
+          ],
+          serviceDescription: 'ייצוג אינטל ברכישת חברת הסטארטאפ הישראלית מודולר מערכות בעסקה בשווי 450 מיליון דולר. העסקה כללה בדיקת נאותות מקיפה, משא ומתן על הסכמי רכישה מורכבים, וטיפול באישורים רגולטוריים מול רשות ההגבלים העסקיים.',
+          practiceArea: 'corporate',
           status: 'approved',
-          dealValue: { amount: 150000000, currency: 'USD' },
-          confidenceScore: 92,
-          submissionScore: 88,
-          completionDate: '2024-01-15',
-          createdAt: '2024-01-10T10:00:00Z',
+          dealValue: { amount: 450000000, currency: 'USD' },
+          confidenceScore: 95,
+          submissionScore: 92,
+          completionDate: '2025-01-15',
+          createdAt: '2025-01-10T10:00:00Z',
         },
         {
           _id: '2',
-          title: 'Gamma Holdings Restructuring',
-          clientName: 'Gamma Holdings Ltd',
-          counterparties: ['Bondholders Committee', 'Senior Lenders'],
-          practiceArea: 'Restructuring & Insolvency',
-          status: 'review',
-          dealValue: { amount: 75000000, currency: 'USD' },
-          confidenceScore: 87,
-          createdAt: '2024-01-08T14:30:00Z',
+          title: 'הנפקת אופנה פלוס בבורסת תל אביב',
+          clientName: 'אופנה פלוס בע"מ',
+          counterparties: ['חתמים: לידר שוקי הון, פועלים IBI'],
+          opposingCounsel: [
+            { firmName: 'גולדפרב זליגמן', representedParty: 'חתמים', practiceArea: 'capital_markets' },
+          ],
+          serviceDescription: 'ליווי הנפקה ראשונה של רשת האופנה הגדולה בישראל בבורסת תל אביב. ההנפקה גייסה 180 מיליון ש"ח וכללה תשקיף מפורט, עבודה מול הרשות לניירות ערך, ומשא ומתן עם מוסדיים.',
+          practiceArea: 'capital_markets',
+          status: 'approved',
+          dealValue: { amount: 180000000, currency: 'ILS' },
+          confidenceScore: 90,
+          submissionScore: 88,
+          completionDate: '2025-02-01',
+          createdAt: '2024-12-15T09:00:00Z',
         },
         {
           _id: '3',
-          title: 'Delta Industries IPO',
-          clientName: 'Delta Industries',
-          practiceArea: 'Capital Markets',
-          status: 'draft',
-          dealValue: { amount: 500000000, currency: 'USD', isEstimated: true },
-          createdAt: '2024-01-05T09:00:00Z',
+          title: 'סבב גיוס C של פינטק סולושנס',
+          clientName: 'FinTech Solutions Ltd',
+          counterparties: ['Sequoia Capital', 'Insight Partners', 'Viola Ventures'],
+          opposingCounsel: [
+            { firmName: 'Fenwick & West', representedParty: 'Sequoia Capital', practiceArea: 'venture_capital' },
+          ],
+          serviceDescription: 'ייצוג חברת הפינטק הישראלית בסבב גיוס Series C בהיקף 120 מיליון דולר בהובלת סקויה קפיטל. העסקה כללה משא ומתן על תנאי ההשקעה, זכויות אנטי-דילול, והרכב דירקטוריון.',
+          practiceArea: 'high_tech',
+          status: 'review',
+          dealValue: { amount: 120000000, currency: 'USD' },
+          confidenceScore: 88,
+          createdAt: '2025-01-20T14:30:00Z',
         },
         {
           _id: '4',
-          title: 'Epsilon Capital Fund Formation',
-          clientName: 'Epsilon Capital',
-          practiceArea: 'Private Equity',
+          title: 'פרויקט מגורים "פארק הים" הרצליה',
+          clientName: 'אזורים קבוצת השקעות',
+          counterparties: ['עיריית הרצליה', 'בנק הפועלים'],
+          serviceDescription: 'ליווי משפטי מקיף לפרויקט פינוי-בינוי בהיקף 2 מיליארד ש"ח בהרצליה הכולל 800 יחידות דיור. כולל הסכמים עם דיירים, הסדרי מימון, וטיפול בהיבטי תכנון ובנייה.',
+          practiceArea: 'real_estate',
+          status: 'approved',
+          dealValue: { amount: 2000000000, currency: 'ILS' },
+          confidenceScore: 93,
+          submissionScore: 90,
+          completionDate: '2025-01-28',
+          createdAt: '2024-06-01T11:00:00Z',
+        },
+        {
+          _id: '5',
+          title: 'תביעה ייצוגית נגד תשתיות טלקום',
+          clientName: 'תשתיות טלקום ישראל בע"מ',
+          counterparties: ['קבוצת התובעים הייצוגית'],
+          opposingCounsel: [
+            { firmName: 'בן ארי פיש סבן', representedParty: 'קבוצת התובעים', practiceArea: 'litigation' },
+          ],
+          serviceDescription: 'הגנה מוצלחת על חברת תקשורת מובילה בתביעה ייצוגית בסך 500 מיליון ש"ח בגין טענות לגביה יתר. התיק הסתיים בפשרה של 15 מיליון ש"ח בלבד.',
+          practiceArea: 'litigation',
           status: 'exported',
-          dealValue: { amount: 250000000, currency: 'USD' },
-          confidenceScore: 95,
-          submissionScore: 92,
-          completionDate: '2023-12-20',
-          createdAt: '2024-01-01T11:00:00Z',
+          dealValue: { amount: 500000000, currency: 'ILS' },
+          confidenceScore: 96,
+          submissionScore: 94,
+          completionDate: '2024-11-15',
+          createdAt: '2024-03-01T08:00:00Z',
+        },
+        {
+          _id: '6',
+          title: 'מיזוג בנקים דיגיטליים - וואן ופאי',
+          clientName: 'One Digital Bank',
+          counterparties: ['PayBank Ltd', 'בנק ישראל'],
+          opposingCounsel: [
+            { firmName: 'מיתר ליקוורניק', representedParty: 'PayBank', practiceArea: 'banking' },
+          ],
+          serviceDescription: 'ייצוג One Digital Bank במיזוג עם PayBank ליצירת הבנק הדיגיטלי הגדול בישראל. העסקה דרשה אישור בנק ישראל והתמודדות עם סוגיות רגולציה מורכבות.',
+          practiceArea: 'banking',
+          status: 'review',
+          dealValue: { amount: 800000000, currency: 'ILS' },
+          confidenceScore: 85,
+          createdAt: '2025-01-05T10:00:00Z',
+        },
+        {
+          _id: '7',
+          title: 'רישום פטנטים גלובלי - AI מדיקל',
+          clientName: 'AI Medical Diagnostics',
+          counterparties: ['USPTO', 'EPO', 'משרד הפטנטים הישראלי'],
+          serviceDescription: 'הגשה וליווי של 12 בקשות פטנט בינלאומיות עבור טכנולוגיית AI לאבחון רפואי. כולל משא ומתן עם בוחני פטנטים ותיקון תביעות.',
+          practiceArea: 'intellectual_property',
+          status: 'approved',
+          dealValue: { amount: 5000000, currency: 'USD' },
+          confidenceScore: 91,
+          submissionScore: 89,
+          completionDate: '2025-02-10',
+          createdAt: '2024-08-01T09:00:00Z',
+        },
+        {
+          _id: '8',
+          title: 'הסכם קיבוצי - עובדי חברת תעשייה',
+          clientName: 'תעשיות כימיות ישראל',
+          counterparties: ['ההסתדרות הכללית', 'ועד העובדים'],
+          serviceDescription: 'ניהול משא ומתן על הסכם קיבוצי חדש ל-3,000 עובדים. ההסכם כולל העלאות שכר, שיפור תנאים סוציאליים, ומעבר לעבודה היברידית.',
+          practiceArea: 'labor',
+          status: 'approved',
+          dealValue: { amount: 150000000, currency: 'ILS' },
+          confidenceScore: 87,
+          submissionScore: 85,
+          completionDate: '2025-01-01',
+          createdAt: '2024-09-15T11:00:00Z',
+        },
+        {
+          _id: '9',
+          title: 'מימון פרויקט אנרגיה סולארית',
+          clientName: 'דליה אנרגיות מתחדשות',
+          counterparties: ['בנק לאומי', 'הפניקס השקעות', 'חברת החשמל'],
+          serviceDescription: 'ליווי משפטי למימון פרויקט שדה סולארי בהיקף 400 מגה-וואט בנגב. כולל הסכמי PPA עם חברת החשמל, מימון פרויקט, וליווי רגולטורי.',
+          practiceArea: 'project_finance',
+          status: 'draft',
+          dealValue: { amount: 1200000000, currency: 'ILS', isEstimated: true },
+          createdAt: '2025-02-01T14:00:00Z',
+        },
+        {
+          _id: '10',
+          title: 'Exit של סייבר סטארט לפאלו אלטו',
+          clientName: 'CyberStart Ltd',
+          counterparties: ['Palo Alto Networks', 'משקיעים קיימים'],
+          opposingCounsel: [
+            { firmName: 'Wilson Sonsini', representedParty: 'Palo Alto Networks', practiceArea: 'high_tech' },
+            { firmName: 'גרניט', representedParty: 'משקיעים קיימים', practiceArea: 'corporate' },
+          ],
+          serviceDescription: 'ייצוג מייסדי חברת הסייבר הישראלית במכירה לפאלו אלטו נטוורקס בעסקה בשווי 350 מיליון דולר. העסקה כללה מנגנוני earn-out מורכבים והתחייבויות נושאי משרה.',
+          practiceArea: 'high_tech',
+          status: 'approved',
+          dealValue: { amount: 350000000, currency: 'USD' },
+          confidenceScore: 97,
+          submissionScore: 95,
+          completionDate: '2024-12-20',
+          createdAt: '2024-10-01T10:00:00Z',
         },
       ]);
     } finally {
@@ -386,8 +467,8 @@ export function MattersPage() {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">{t('matters.allPracticeAreas')}</SelectItem>
-                  {PRACTICE_AREAS.map(area => (
-                    <SelectItem key={area} value={area}>{area}</SelectItem>
+                  {PRACTICE_AREA_KEYS.map(key => (
+                    <SelectItem key={key} value={key}>{t(`practiceAreas.${key}`)}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -438,7 +519,7 @@ export function MattersPage() {
                       <td className="py-4 text-sm">{matter.clientName || '-'}</td>
                       <td className="py-4">
                         {matter.practiceArea ? (
-                          <Badge variant="outline" className="text-xs">{matter.practiceArea}</Badge>
+                          <Badge variant="outline" className="text-xs">{t(`practiceAreas.${matter.practiceArea}`, matter.practiceArea)}</Badge>
                         ) : (
                           <span className="text-sm text-muted-foreground">-</span>
                         )}
@@ -550,8 +631,8 @@ export function MattersPage() {
                     <SelectValue placeholder={t('matters.selectPracticeArea')} />
                   </SelectTrigger>
                   <SelectContent>
-                    {PRACTICE_AREAS.map(area => (
-                      <SelectItem key={area} value={area}>{area}</SelectItem>
+                    {PRACTICE_AREA_KEYS.map(key => (
+                      <SelectItem key={key} value={key}>{t(`practiceAreas.${key}`)}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
@@ -651,8 +732,8 @@ export function MattersPage() {
                         <SelectValue placeholder={t('matters.practiceArea')} />
                       </SelectTrigger>
                       <SelectContent>
-                        {PRACTICE_AREAS.map(area => (
-                          <SelectItem key={area} value={area}>{area}</SelectItem>
+                        {PRACTICE_AREA_KEYS.map(key => (
+                          <SelectItem key={key} value={key}>{t(`practiceAreas.${key}`)}</SelectItem>
                         ))}
                       </SelectContent>
                     </Select>
