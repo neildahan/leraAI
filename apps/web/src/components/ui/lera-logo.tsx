@@ -6,17 +6,16 @@ interface LeraLogoProps {
 }
 
 export function LeraLogo({ className, variant = 'default' }: LeraLogoProps) {
-  // Colors based on variant
   const colors = variant === 'white'
     ? {
-        shape1: '#ffffff',
-        shape2: 'rgba(255,255,255,0.7)',
-        dot: 'rgba(255,255,255,0.9)',
+        primary: '#ffffff',
+        secondary: 'rgba(255,255,255,0.6)',
+        accent: 'rgba(255,255,255,0.85)',
       }
     : {
-        shape1: '#003545',      // Main brand color
-        shape2: '#0087b1',      // Lighter accent
-        dot: '#00b4d8',         // Bright accent for the dot
+        primary: '#003545',
+        secondary: '#0097b2',
+        accent: '#00c2cb',
       };
 
   return (
@@ -26,36 +25,30 @@ export function LeraLogo({ className, variant = 'default' }: LeraLogoProps) {
       xmlns="http://www.w3.org/2000/svg"
       className={cn('h-10 w-10', className)}
     >
-      {/* Modern abstract checkmark with overlapping shapes */}
+      {/* Clean checkmark style - like Customer.io */}
 
-      {/* Back shape - angled rectangle */}
-      <rect
-        x="6"
-        y="14"
-        width="8"
-        height="22"
-        rx="4"
-        fill={colors.shape2}
-        transform="rotate(-45 6 14)"
+      {/* Short arm of checkmark (back) */}
+      <path
+        d="M8 20 L14 26"
+        stroke={colors.secondary}
+        strokeWidth="7"
+        strokeLinecap="round"
       />
 
-      {/* Front shape - angled rectangle */}
-      <rect
-        x="12"
-        y="8"
-        width="8"
-        height="28"
-        rx="4"
-        fill={colors.shape1}
-        transform="rotate(45 12 8)"
+      {/* Long arm of checkmark (front) */}
+      <path
+        d="M14 26 L32 8"
+        stroke={colors.primary}
+        strokeWidth="7"
+        strokeLinecap="round"
       />
 
-      {/* AI dot - represents intelligence/automation */}
+      {/* AI dot */}
       <circle
-        cx="30"
-        cy="10"
-        r="5"
-        fill={colors.dot}
+        cx="32"
+        cy="8"
+        r="4.5"
+        fill={colors.accent}
       />
     </svg>
   );
