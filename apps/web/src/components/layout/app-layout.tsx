@@ -117,8 +117,8 @@ export function AppLayout() {
     <div className="flex h-screen bg-gray-100" dir={isRTL ? 'rtl' : 'ltr'}>
       {/* Sidebar */}
       <aside className="flex w-72 flex-col bg-white/80 backdrop-blur-sm m-3 rounded-2xl shadow-sm border border-gray-100">
-        {/* Logo */}
-        <div className="flex items-center gap-3 px-6 py-6">
+        {/* Logo - always LTR for consistent branding */}
+        <div className="flex items-center gap-3 px-6 py-6" dir="ltr">
           <LeraLogo className="h-10 w-10" color="brand" />
           <span className="text-xl font-semibold tracking-tight text-gray-800">Lera AI</span>
         </div>
