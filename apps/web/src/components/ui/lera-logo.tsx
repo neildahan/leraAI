@@ -6,8 +6,18 @@ interface LeraLogoProps {
 }
 
 export function LeraLogo({ className, variant = 'default' }: LeraLogoProps) {
-  const primaryColor = variant === 'white' ? '#ffffff' : '#003545';
-  const accentColor = variant === 'white' ? 'rgba(255,255,255,0.6)' : '#0087b1';
+  // Colors based on variant
+  const colors = variant === 'white'
+    ? {
+        shape1: '#ffffff',
+        shape2: 'rgba(255,255,255,0.7)',
+        dot: 'rgba(255,255,255,0.9)',
+      }
+    : {
+        shape1: '#003545',      // Main brand color
+        shape2: '#0087b1',      // Lighter accent
+        dot: '#00b4d8',         // Bright accent for the dot
+      };
 
   return (
     <svg
@@ -16,40 +26,36 @@ export function LeraLogo({ className, variant = 'default' }: LeraLogoProps) {
       xmlns="http://www.w3.org/2000/svg"
       className={cn('h-10 w-10', className)}
     >
-      {/* Modern AI Brain/Network inspired logo */}
-      {/* Central hexagon - represents AI core */}
-      <path
-        d="M20 6L28.66 11V21L20 26L11.34 21V11L20 6Z"
-        fill={primaryColor}
+      {/* Modern abstract checkmark with overlapping shapes */}
+
+      {/* Back shape - angled rectangle */}
+      <rect
+        x="6"
+        y="14"
+        width="8"
+        height="22"
+        rx="4"
+        fill={colors.shape2}
+        transform="rotate(-45 6 14)"
       />
 
-      {/* Neural connection nodes */}
-      <circle cx="20" cy="6" r="2.5" fill={accentColor} />
-      <circle cx="28.66" cy="11" r="2" fill={accentColor} />
-      <circle cx="28.66" cy="21" r="2" fill={accentColor} />
-      <circle cx="20" cy="26" r="2.5" fill={accentColor} />
-      <circle cx="11.34" cy="21" r="2" fill={accentColor} />
-      <circle cx="11.34" cy="11" r="2" fill={accentColor} />
+      {/* Front shape - angled rectangle */}
+      <rect
+        x="12"
+        y="8"
+        width="8"
+        height="28"
+        rx="4"
+        fill={colors.shape1}
+        transform="rotate(45 12 8)"
+      />
 
-      {/* Outer orbital rings - AI processing */}
+      {/* AI dot - represents intelligence/automation */}
       <circle
-        cx="20"
-        cy="16"
-        r="14"
-        stroke={accentColor}
-        strokeWidth="1.5"
-        fill="none"
-        strokeDasharray="4 6"
-        opacity="0.5"
-      />
-
-      {/* Inner L letterform subtly integrated */}
-      <path
-        d="M17 11V19H23"
-        stroke={variant === 'white' ? '#003545' : '#ffffff'}
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        cx="30"
+        cy="10"
+        r="5"
+        fill={colors.dot}
       />
     </svg>
   );
