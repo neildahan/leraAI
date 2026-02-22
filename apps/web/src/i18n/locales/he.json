@@ -79,7 +79,16 @@
     "referees": "ממליצים",
     "imanage": "iManage",
     "aiSynthesis": "סינתזה AI",
-    "templates": "תבניות"
+    "templates": "תבניות",
+    "notifications": "התראות",
+    "support": "תמיכה",
+    "settings": "הגדרות",
+    "myProfile": "הפרופיל שלי",
+    "sections": {
+      "general": "כללי",
+      "tools": "כלים",
+      "support": "תמיכה"
+    }
   },
   "dashboard": {
     "title": "לוח בקרה",
@@ -427,6 +436,31 @@
     "language": "שפה",
     "english": "אנגלית",
     "hebrew": "עברית"
+  },
+  "profile": {
+    "subtitle": "נהל את הגדרות החשבון וההעדפות שלך",
+    "personalInfo": "מידע אישי",
+    "personalInfoDescription": "הפרטים האישיים ופרטי הקשר שלך",
+    "firstName": "שם פרטי",
+    "lastName": "שם משפחה",
+    "firstNamePlaceholder": "הזן את שמך הפרטי",
+    "lastNamePlaceholder": "הזן את שם המשפחה שלך",
+    "emailCannotBeChanged": "לא ניתן לשנות את כתובת הדוא\"ל",
+    "saveChanges": "שמור שינויים",
+    "languageSettings": "הגדרות שפה",
+    "languageSettingsDescription": "בחר את השפה המועדפת עליך לממשק",
+    "languageChanged": "השפה שונתה",
+    "languageChangedDescription": "העדפת השפה שלך עודכנה",
+    "security": "אבטחה",
+    "securityDescription": "נהל את הסיסמה והגדרות האבטחה שלך",
+    "password": "סיסמה",
+    "lastChanged": "שונתה לפני 30 יום",
+    "changePassword": "שנה סיסמה",
+    "profileUpdated": "הפרופיל שלך עודכן",
+    "avatarUpdated": "התמונה עודכנה",
+    "avatarUpdatedDescription": "תמונת הפרופיל שלך עודכנה",
+    "fileTooLarge": "הקובץ גדול מדי",
+    "maxFileSize": "גודל הקובץ המקסימלי הוא 5MB"
   },
   "practiceAreas": {
     "cooperative_associations": "אגודות שיתופיות",

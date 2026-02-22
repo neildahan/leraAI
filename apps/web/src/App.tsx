@@ -12,6 +12,7 @@ import { TemplatesPage } from '@/pages/templates';
 import { SubmissionsPage } from '@/pages/submissions';
 import { LawyersPage } from '@/pages/lawyers';
 import { RefereesPage } from '@/pages/referees';
+import { ProfilePage } from '@/pages/profile';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="imanage" element={<ImanagePage />} />
           <Route path="synthesis" element={<SynthesisPage />} />
           <Route path="templates" element={<TemplatesPage />} />
+          <Route path="profile" element={<ProfilePage />} />
         </Route>
       </Routes>
       <Toaster />
